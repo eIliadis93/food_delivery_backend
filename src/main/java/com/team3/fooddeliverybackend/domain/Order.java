@@ -27,4 +27,6 @@ public class Order extends BaseModel{
     private Set<Product> products;
     @Column(precision = 10, scale = 2, nullable = false)
     private BigDecimal payAmount;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Store store;
 }
