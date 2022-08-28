@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 public class Product extends BaseModel {
     @Column(length = 50, nullable = false)
     private String name;
-    @Column(precision = 10, scale = 2, nullable = false)
+    @Column(precision = 10, scale = 2, nullable = true)
     private BigDecimal price;
     @Enumerated(EnumType.STRING)
     @Column(length = 15, nullable = false)
