@@ -1,4 +1,4 @@
 package com.team3.fooddeliverybackend.domain;
 
-public class ProductCategory {
+public enum ProductCategory {
 }

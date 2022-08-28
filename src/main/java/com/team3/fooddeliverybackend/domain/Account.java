@@ -3,6 +3,7 @@ package com.team3.fooddeliverybackend.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -24,5 +25,7 @@ public class Account extends BaseModel{
     private Integer age;
     @Column(length = 50)
     private String address;
+    @OneToMany(mappedBy = "creditCard", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<CreditCard> creditCards;
 
 }
