@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StoreRepository extends JpaRepository<Store, Long> {
 
-    Store findByLocation(String location);
+    Store findByName(String name);
 
-    Store findByEmail(String email);
+    Store findByCategory(String email);
 }
