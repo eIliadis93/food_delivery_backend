@@ -3,6 +3,7 @@ package com.team3.fooddeliverybackend.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,8 +27,8 @@ public class Store extends BaseModel {
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
     private StoreCategory storeCategory;
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
-    private Menu menu;
+    @ManyToMany
+    private List<Product> productList;
 
 
 }

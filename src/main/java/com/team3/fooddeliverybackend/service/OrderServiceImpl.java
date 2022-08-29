@@ -3,6 +3,7 @@ package com.team3.fooddeliverybackend.service;
 import com.team3.fooddeliverybackend.domain.*;
 import com.team3.fooddeliverybackend.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderService {
+	@Autowired
 	private final OrderRepository orderRepository;
 
 	@Override
@@ -27,7 +29,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 
 	@Override
 	public Order initiateOrder(Account account) {
-		return Order.builder().account(account).orderItems(new HashSet<>()).build();
+		return Order.builder().account(account).orderItems(new HashSet<>()).submitDate(new Date()).build();
 	}
 
 	@Override
@@ -84,7 +86,6 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 			return null;
 		}
 
-		// Set all order fields with proper values
 		order.setPaymentMethod(paymentMethod);
 		order.setSubmitDate(new Date());
 		order.setPayAmount(givePayAmount(order));
@@ -127,7 +128,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 									   .map(oi -> oi.getPrice().multiply(BigDecimal.valueOf(oi.getQuantity())))
 									   .reduce(BigDecimal.ZERO, BigDecimal::add);
 		//@formatter:on
-		logger.debug("Order[{}], originalCost: {}, totalDiscount: {}, finalCost: {}.", order.getId(), totalCost);
+		logger.debug("Order[{}], totalCost: {}.", order.getId(), totalCost);
 
 		return totalCost;
 	}
