@@ -38,17 +38,25 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
 
     @Override
     public void addProduct(Store store, Product product) {
-
+        store.getProductList().add(product);
+        logger.info("Product {} has been added to Store {}", product, store);
     }
 
     @Override
     public void updateProduct(Store store, Product product) {
+        if(store.getProductList().contains(product)) {
+            store.getProductList().removeIf(pr -> pr.getSerial().equals(product.getSerial()));
+            store.getProductList().add(product);
 
+            logger.info("Product[{}] updated in Store[{}]", product, store);
+        }
+        logger.info("Product with name {} does not exist in Store {}", product, store);
     }
 
     @Override
     public void removeProduct(Store store, Product product) {
-
+        store.getProductList().remove(product);
+        logger.info("Product {} has been removed from Store {}", product, store);
     }
 
     @Override
