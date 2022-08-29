@@ -14,17 +14,14 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "ORDERS", indexes = {@Index(name = "PRODUCT_IDX_01", columnList = "serial"),})
+@Table(name = "ORDERS")
 @SequenceGenerator(name = "idGenerator", sequenceName = "ORDERS_SEQ", initialValue = 1, allocationSize = 1)
 public class Order extends BaseModel{
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Account account;
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date orderDate;
     @ToString.Exclude
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private Set<Product> products;
+    private Set<OrderItem> orderItems;
     @Column(precision = 10, scale = 2, nullable = false)
     private BigDecimal payAmount;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -32,4 +29,7 @@ public class Order extends BaseModel{
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
     private PaymentMethod paymentMethod;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    private Date submitDate;
 }
