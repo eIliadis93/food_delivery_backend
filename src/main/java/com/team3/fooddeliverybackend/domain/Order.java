@@ -29,4 +29,7 @@ public class Order extends BaseModel{
     private BigDecimal payAmount;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Store store;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10, nullable = false)
+    private PaymentMethod paymentMethod;
 }

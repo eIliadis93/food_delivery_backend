@@ -18,7 +18,7 @@ public class Product extends BaseModel {
     @Column(length = 50, nullable = false)
     private String name;
     @Column(length = 30, nullable = false, unique = true)
-    private String serial;
+    private String serial;  // is it needed?
     @Column(precision = 10, scale = 2, nullable = true)
     private BigDecimal price;
     @Enumerated(EnumType.STRING)
