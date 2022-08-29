@@ -3,12 +3,15 @@ package com.team3.fooddeliverybackend.service;
 import com.team3.fooddeliverybackend.base.BaseComponent;
 import com.team3.fooddeliverybackend.domain.BaseModel;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
 public abstract class BaseServiceImpl<T extends BaseModel> extends BaseComponent implements BaseService<T>  {
     public abstract JpaRepository<T, Long> getRepository();
 

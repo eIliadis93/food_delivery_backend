@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
@@ -18,21 +19,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderService {
 	private final OrderRepository orderRepository;
-
-	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
-	public Order checkout(Order order, PaymentMethod paymentMethod) {
-		if (!validate(order)) {
-			logger.warn("Order should have customer, order items, and payment type defined before being able to " +
-					"checkout the order.");
-			return null;
-		}
-
-		// Set all order fields with proper values
-		order.setPaymentMethod(paymentMethod);
-		order.setSubmitDate(new Date());
-
-		return create(order);
-	}
 
 	@Override
 	public JpaRepository<Order, Long> getRepository() {
@@ -90,6 +76,22 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 		logger.debug("Product[{}] removed from Order[{}]", product, order);
 	}
 
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
+	public Order checkout(Order order, PaymentMethod paymentMethod) {
+		if (!validate(order)) {
+			logger.warn("Order should have customer, order items, and payment type defined before being able to " +
+								"checkout the order.");
+			return null;
+		}
+
+		// Set all order fields with proper values
+		order.setPaymentMethod(paymentMethod);
+		order.setSubmitDate(new Date());
+		order.setPayAmount(givePayAmount(order));
+
+		return create(order);
+	}
+
 	@Override
 	public Order getLazy(Long id) {
 		Optional<Order> order = orderRepository.getLazy(id);
@@ -98,7 +100,6 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 		}
 		throw new NoSuchElementException(String.format("There was no order found matching id %d.", id));
 	}
-
 
 	private boolean checkNullability(Order order, Product product) {
 		if (order == null) {
@@ -120,5 +121,15 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 		return OrderItem.builder().product(product).order(order).quantity(quantity).price(product.getPrice()).build();
 	}
 
+	private BigDecimal givePayAmount(Order order) {
+		//@formatter:off
+		BigDecimal totalCost = order.getOrderItems().stream()
+									   .map(oi -> oi.getPrice().multiply(BigDecimal.valueOf(oi.getQuantity())))
+									   .reduce(BigDecimal.ZERO, BigDecimal::add);
+		//@formatter:on
+		logger.debug("Order[{}], originalCost: {}, totalDiscount: {}, finalCost: {}.", order.getId(), totalCost);
+
+		return totalCost;
+	}
 
 }

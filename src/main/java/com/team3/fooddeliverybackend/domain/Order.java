@@ -14,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "ORDERS", indexes = {@Index(name = "PRODUCT_IDX_01", columnList = "serial"),})
+@Table(name = "ORDERS")
 @SequenceGenerator(name = "idGenerator", sequenceName = "ORDERS_SEQ", initialValue = 1, allocationSize = 1)
 public class Order extends BaseModel{
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
