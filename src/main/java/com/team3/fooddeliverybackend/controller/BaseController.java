@@ -21,13 +21,16 @@ public abstract class BaseController<T extends BaseModel> extends BaseComponent 
         return ResponseEntity.ok(getBaseService().get(id));
     }
 
+    @GetMapping
+    public ResponseEntity<List<T>> findAll() {
+        return ResponseEntity.ok().body(getBaseService().findAll());
+    }
+
     @PostMapping
     public ResponseEntity<T> create( @RequestBody final T entity) {
         return new ResponseEntity<>((getBaseService().create(entity)),
                 HttpStatus.CREATED);
     }
-
-
 
     @PutMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
