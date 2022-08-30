@@ -30,7 +30,7 @@ public class Account extends BaseModel{
 
     @ToString.Exclude
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @NotNull
+    //@NotNull
     private Set<CreditCard> creditCard;
 
 }
