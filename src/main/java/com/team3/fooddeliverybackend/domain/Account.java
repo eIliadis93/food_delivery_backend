@@ -2,8 +2,10 @@ package com.team3.fooddeliverybackend.domain;
 
 import lombok.*;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.Table;
 
 @Getter
 @Setter
@@ -12,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "CUSTOMERS", indexes = {@Index(name = "CUSTOMER_IDX_01", columnList = "email")})
+@Table(name = "ACCOUNTS", indexes = {@Index(name = "ACCOUNT_IDX_01", columnList = "email")})
 public class Account extends BaseModel{
     @Column(length = 50, nullable = false, unique = true)
     private String email;
@@ -25,7 +27,5 @@ public class Account extends BaseModel{
     private Integer age;
     @Column(length = 50)
     private String address;
-    @OneToMany(mappedBy = "creditCard", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private Set<CreditCard> creditCards;
 
 }

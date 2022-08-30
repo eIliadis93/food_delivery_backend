@@ -2,10 +2,7 @@ package com.team3.fooddeliverybackend.domain;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Index;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -24,4 +21,6 @@ public class CreditCard extends BaseModel{
     private String expirationDate;
     @Column(length = 3, nullable = false)
     private int threeDigitCode;
+    @ManyToOne
+    private Account account;
 }

@@ -1,5 +1,6 @@
 package com.team3.fooddeliverybackend.domain;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,8 +19,10 @@ import java.util.Set;
 @SequenceGenerator(name = "idGenerator", sequenceName = "ORDERS_SEQ", initialValue = 1, allocationSize = 1)
 public class Order extends BaseModel{
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @NotNull
     private Account account;
     @ToString.Exclude
+    @NotNull
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<OrderItem> orderItems;
     @Column(precision = 10, scale = 2, nullable = false)
@@ -28,6 +31,7 @@ public class Order extends BaseModel{
     private Store store;
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
+    @NotNull
     private PaymentMethod paymentMethod;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
