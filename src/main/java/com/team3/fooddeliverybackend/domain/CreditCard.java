@@ -2,7 +2,10 @@ package com.team3.fooddeliverybackend.domain;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Getter
 @Setter
@@ -11,7 +14,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "CUSTOMERS", indexes = {@Index(name = "CUSTOMER_IDX_01", columnList = "email")})
+@Table(name = "CREDITCARD")
 public class CreditCard extends BaseModel{
     @Column(length = 12, nullable = false, unique = true)
     private int cardNumber;
