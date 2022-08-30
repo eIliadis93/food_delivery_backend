@@ -31,6 +31,11 @@ public abstract class BaseController<T extends BaseModel> extends BaseComponent 
         return new ResponseEntity<>((getBaseService().create(entity)),
                 HttpStatus.CREATED);
     }
+    @PostMapping(headers = "list")
+    public ResponseEntity<List<T>>createAll(@RequestBody List<T> entities) {
+        return new ResponseEntity<>(getBaseService().createAll(entities),
+                HttpStatus.CREATED);
+    }
 
     @PutMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)

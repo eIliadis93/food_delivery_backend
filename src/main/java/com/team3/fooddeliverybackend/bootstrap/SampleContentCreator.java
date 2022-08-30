@@ -3,6 +3,7 @@ package com.team3.fooddeliverybackend.bootstrap;
 import com.team3.fooddeliverybackend.base.BaseComponent;
 import com.team3.fooddeliverybackend.domain.Account;
 import com.team3.fooddeliverybackend.domain.Product;
+import com.team3.fooddeliverybackend.domain.ProductCategory;
 import com.team3.fooddeliverybackend.service.AccountService;
 import com.team3.fooddeliverybackend.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Component
@@ -29,7 +31,7 @@ public class SampleContentCreator extends BaseComponent {
     );
 
     List<Product> products = List.of(
-      Product.builder().name("Pizza Special").serial("asdasd").build(),
-      Product.builder().name("Coca Cola").serial("asdasdasd").build()
+      Product.builder().name("Pizza Special").serial("asdasd").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.FOOD).build(),
+      Product.builder().name("Coca Cola").serial("asdasdasd").price(BigDecimal.valueOf(1.50)).productCategory(ProductCategory.DRINK).build()
     );
 }
