@@ -4,8 +4,6 @@ import com.team3.fooddeliverybackend.domain.Product;
 import com.team3.fooddeliverybackend.domain.Store;
 import com.team3.fooddeliverybackend.domain.StoreCategory;
 
-import java.util.List;
-
 public interface StoreService extends BaseService<Store>{
 
     Store findByName(String name);
@@ -17,8 +15,5 @@ public interface StoreService extends BaseService<Store>{
     void updateProduct(Store store, Product product);
 
     void removeProduct(Store store , Product product);
-
-    List<Product> createMenu(final Product... products);
-
 
 }

@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Table(name = "CREDITCARD")
 public class CreditCard extends BaseModel{
-    @Column(length = 12, nullable = false, unique = true)
+    @Column(length = 16, nullable = false, unique = true)
     private int cardNumber;
     @Column(length = 30, nullable = false)
     private  String holderName;
