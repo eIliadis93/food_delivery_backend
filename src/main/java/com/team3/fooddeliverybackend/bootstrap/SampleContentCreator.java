@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Component
@@ -29,7 +30,7 @@ public class SampleContentCreator extends BaseComponent {
     );
 
     List<Product> products = List.of(
-      Product.builder().name("Pizza Special").serial("asdasd").build(),
-      Product.builder().name("Coca Cola").serial("asdasdasd").build()
+      Product.builder().name("Pizza Special").serial("asdasd").price(BigDecimal.valueOf(5)).build(),
+      Product.builder().name("Coca Cola").serial("asdasdasd").price(BigDecimal.valueOf(10)).build()
     );
 }
