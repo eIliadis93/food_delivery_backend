@@ -1,9 +1,10 @@
 package com.team3.fooddeliverybackend.domain;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -12,7 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "ACCOUNTS", indexes = {@Index(name = "ACCOUNT_IDX_01", columnList = "email")})
+@Table(name = "ACCOUNTS")
+@SequenceGenerator(name = "idGenerator", sequenceName = "ACCOUNTS_SEQ", initialValue = 1, allocationSize = 1)
 public class Account extends BaseModel{
     @Column(length = 50, nullable = false, unique = true)
     private String email;
@@ -25,7 +27,10 @@ public class Account extends BaseModel{
     private Integer age;
     @Column(length = 50)
     private String address;
-    @OneToMany
-    private List<CreditCard> creditCard;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @NotNull
+    private Set<CreditCard> creditCard;
 
 }

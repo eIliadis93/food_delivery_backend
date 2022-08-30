@@ -5,7 +5,6 @@ import com.team3.fooddeliverybackend.domain.Store;
 import com.team3.fooddeliverybackend.domain.StoreCategory;
 import com.team3.fooddeliverybackend.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreService{
 
-    @Autowired
     private final StoreRepository storeRepository;
 
     @Override
@@ -32,7 +30,7 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     @Override
     public Store findByCategory(final StoreCategory storeCategory) {
         logger.info("Searching store by category {}.", storeCategory);
-        return storeRepository.findByCategory(storeCategory);
+        return storeRepository.findByStoreCategory(storeCategory);
     }
 
     @Override
