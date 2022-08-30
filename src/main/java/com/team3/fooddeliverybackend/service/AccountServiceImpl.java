@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AccountServiceImpl extends BaseServiceImpl<Account> implements AccountService{
 
-    @Autowired
     private final AccountRepository accountRepository;
 
     @Override
