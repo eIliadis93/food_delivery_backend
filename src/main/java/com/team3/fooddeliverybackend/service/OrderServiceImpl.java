@@ -3,7 +3,6 @@ package com.team3.fooddeliverybackend.service;
 import com.team3.fooddeliverybackend.domain.*;
 import com.team3.fooddeliverybackend.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -19,7 +18,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderService {
-	@Autowired
+
 	private final OrderRepository orderRepository;
 
 	@Override
