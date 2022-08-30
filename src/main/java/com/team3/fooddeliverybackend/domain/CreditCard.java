@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class CreditCard extends BaseModel{
     @Column(length = 16, nullable = false, unique = true)
     @NotNull
-    private int cardNumber;
+    private Long cardNumber;
     @Column(length = 30, nullable = false)
     @NotNull
     private  String holderName;

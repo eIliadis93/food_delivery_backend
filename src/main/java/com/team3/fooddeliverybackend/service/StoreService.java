@@ -8,7 +8,7 @@ public interface StoreService extends BaseService<Store>{
 
     Store findByName(String name);
 
-    Store findByCategory(StoreCategory storeCategory);
+    Store findByStoreCategory(StoreCategory storeCategory);
 
     void addProduct(Store store, Product product);
 

@@ -28,7 +28,7 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     }
 
     @Override
-    public Store findByCategory(final StoreCategory storeCategory) {
+    public Store findByStoreCategory(final StoreCategory storeCategory) {
         logger.info("Searching store by category {}.", storeCategory);
         return storeRepository.findByStoreCategory(storeCategory);
     }
