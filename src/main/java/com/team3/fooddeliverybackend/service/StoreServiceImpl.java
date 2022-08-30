@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreService{
@@ -32,8 +30,9 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     }
 
     @Override
-    public Store findByCategory(StoreCategory storeCategory) {
-        return null;
+    public Store findByCategory(final StoreCategory storeCategory) {
+        logger.info("Searching store by category {}.", storeCategory);
+        return storeRepository.findByCategory(storeCategory);
     }
 
     @Override
@@ -59,8 +58,4 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
         logger.info("Product {} has been removed from Store {}", product, store);
     }
 
-    @Override
-    public List<Product> createMenu(Product... products) {
-        return null;
-    }
 }
