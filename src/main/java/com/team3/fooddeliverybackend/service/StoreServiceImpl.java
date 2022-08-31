@@ -43,7 +43,7 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     public void updateProduct(Store store, Product product) {
         if(store.getProductList().contains(product)) {
             store.getProductList().removeIf(pr -> pr.getSerial().equals(product.getSerial()));
-            store.getProductList().add(product);
+            store.getProductList().add(Product.builder().build());
 
             logger.info("Product[{}] updated in Store[{}]", product, store);
         }

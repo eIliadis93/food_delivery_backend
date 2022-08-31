@@ -1,9 +1,10 @@
 package com.team3.fooddeliverybackend.domain;
 
-import com.sun.istack.NotNull;
+
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;

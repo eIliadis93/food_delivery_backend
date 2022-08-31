@@ -27,15 +27,15 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
 
         List<Account> accounts = accountService.createAll(
                 Account.builder().email("guest1@gmail.com").password("admin1234!")
-                        .firstname("Joey").lastname("Tribbiani").age(30).address("Somewhere in Brooklyn").build(),
+                        .firstname("Joey").lastname("Tribbiani").age(30).build(),
                 Account.builder().email("guest2@gmail.com").password("admin1234!")
-                        .firstname("Chandler").lastname("Bing").age(31).address("Somewhere in Manhattan").build(),
+                        .firstname("Chandler").lastname("Bing").age(31).build(),
                 Account.builder().email("guest3@gmail.com").password("admin1234!")
-                        .firstname("Rachel").lastname("Green").age(31).address("Somewhere in Long Island").build(),
+                        .firstname("Rachel").lastname("Green").age(31).build(),
                 Account.builder().email("guest4@gmail.com").password("admin1234!")
-                        .firstname("Monika").lastname("Geller").age(31).address("Somewhere in East Hampton").build(),
+                        .firstname("Monika").lastname("Geller").age(31).build(),
                 Account.builder().email("guest5@gmail.com").password("admin1234!")
-                        .firstname("Ross").lastname("Geller").age(31).address("Somewhere in Queens").build()
+                        .firstname("Ross").lastname("Geller").age(31).build()
         );
         logger.info("Created accounts {}.", accounts);
 
