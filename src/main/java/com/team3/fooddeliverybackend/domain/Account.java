@@ -1,6 +1,5 @@
 package com.team3.fooddeliverybackend.domain;
 
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,9 +24,9 @@ public class Account extends BaseModel{
     @Column(length = 30, nullable = false)
     private String lastname;
     private Integer age;
-    @Column(length = 50)
-    private String address;
-
+    @ToString.Exclude
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<Address> addresses;
     @ToString.Exclude
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     //@NotNull

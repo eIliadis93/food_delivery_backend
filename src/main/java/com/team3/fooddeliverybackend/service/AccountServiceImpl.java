@@ -1,6 +1,7 @@
 package com.team3.fooddeliverybackend.service;
 
 import com.team3.fooddeliverybackend.domain.Account;
+import com.team3.fooddeliverybackend.domain.Address;
 import com.team3.fooddeliverybackend.domain.CreditCard;
 import com.team3.fooddeliverybackend.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
@@ -37,17 +38,25 @@ public class AccountServiceImpl extends BaseServiceImpl<Account> implements Acco
         if(!isAlready){
             account.getCreditCard().add(credit);
         }
+    }
 
+    @Override
+    public void removeCreditCard(CreditCard creditCard, Account account) {
 
     }
 
     @Override
-    public void updateCreditCard(CreditCard creditCard) {
+    public void addAddress(Account account, Address address) {
 
     }
 
     @Override
-    public void removeCreditCard(CreditCard creditCard) {
+    public void updateAddress(Account account, Address address) {
+
+    }
+
+    @Override
+    public void removeAddress(Account account, Address address) {
 
     }
 
