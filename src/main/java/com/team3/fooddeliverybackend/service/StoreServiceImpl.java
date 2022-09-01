@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +31,7 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     }
 
     @Override
-    public Store findByStoreCategory(final StoreCategory storeCategory) {
+    public List<Store> findByStoreCategory(final StoreCategory storeCategory) {
         logger.info("Searching store by category {}.", storeCategory);
         return storeRepository.findByStoreCategory(storeCategory);
     }
@@ -59,7 +60,7 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     }
 
     @Override
-    public List<StoreProduct> getStoreProductList(Store store) {
+    public Set<StoreProduct> getStoreProductList(Store store) {
         return storeRepository.getStoreProductList(store);
     }
 

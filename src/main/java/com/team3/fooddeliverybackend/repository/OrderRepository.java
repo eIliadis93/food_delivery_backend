@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-        @Query("select distinct o from Order o join fetch o.account join fetch o.orderItems oi join fetch oi.product where o.id = :id")
+        @Query("select distinct o from Order o join fetch o.account join fetch o.orderItems oi join fetch oi.storeProduct where o.id = :id")
         @QueryHints(@QueryHint(name = org.hibernate.jpa.QueryHints.HINT_PASS_DISTINCT_THROUGH, value = "false"))
         Optional<Order> getLazy(Long id);
 

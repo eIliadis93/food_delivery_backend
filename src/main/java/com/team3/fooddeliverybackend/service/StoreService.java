@@ -5,12 +5,13 @@ import com.team3.fooddeliverybackend.domain.StoreCategory;
 import com.team3.fooddeliverybackend.domain.StoreProduct;
 
 import java.util.List;
+import java.util.Set;
 
 public interface StoreService extends BaseService<Store>{
 
     Store findByName(String name);
 
-    Store findByStoreCategory(StoreCategory storeCategory);
+    List<Store> findByStoreCategory(StoreCategory storeCategory);
 
     void addStoreProduct(Store store, StoreProduct storeProduct);
 
@@ -18,6 +19,6 @@ public interface StoreService extends BaseService<Store>{
 
     void removeStoreProduct(Store store , StoreProduct storeProduct);
 
-    List<StoreProduct> getStoreProductList(Store store);
+    Set<StoreProduct> getStoreProductList(Store store);
 
 }
