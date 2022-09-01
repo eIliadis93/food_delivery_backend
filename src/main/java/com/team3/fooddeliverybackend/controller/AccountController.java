@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -32,36 +31,6 @@ public class AccountController extends BaseController<Account> {
             throw new NoSuchElementException("Element not found");
         }
         return ResponseEntity.ok(byEmail);
-    }
-
-    @PostMapping
-    public ResponseEntity<Account> create(@RequestBody Account account) {
-        return ResponseEntity.ok(accountService.create(account));
-    }
-
-    @PostMapping(headers = "list")
-    public ResponseEntity<List<Account>> createAll(@RequestBody List<Account> accounts) {
-        return ResponseEntity.ok(accountService.createAll(accounts));
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Account>> findAll() {
-        return ResponseEntity.ok(accountService.findAll());
-    }
-
-    @PutMapping
-    public void update(@RequestBody Account account) {
-        accountService.update(account);
-    }
-
-    @DeleteMapping("{id}")
-    public void delete(@PathVariable Long id) {
-        accountService.deleteById(id);
-    }
-
-    @GetMapping("{id}")
-    public ResponseEntity<Account> get(@PathVariable Long id) {
-        return ResponseEntity.ok(accountService.get(id));
     }
 
     @PostMapping("{creditCard}")
