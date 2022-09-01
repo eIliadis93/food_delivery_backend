@@ -10,10 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -33,13 +30,17 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 
 	@Override
 	public void addItem(Order order, StoreProduct storeProduct, int quantity) {
+
+		if(!Objects.equals(order.getStore().getId(), storeProduct.getStore().getId())){
+			logger.info("The previous order items of the order {} will be cleared since the Store is changed", order);
+			orderRepository.getOrderItems(order).clear();
+		}
+
 		if (checkNullability(order, storeProduct)) {
 			return;
 		}
 
 		boolean increasedQuantity = false;
-
-		// If product is already contained in the order, don't add it again, just increase the quantity accordingly
 		for (OrderItem oi : order.getOrderItems()) {
 			if (oi.getStoreProduct().getProduct().getSerial().equals(storeProduct.getProduct().getSerial())) {
 				oi.setQuantity(oi.getQuantity() + quantity);

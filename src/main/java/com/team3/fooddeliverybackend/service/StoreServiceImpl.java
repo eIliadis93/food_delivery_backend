@@ -64,7 +64,4 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
         return storeRepository.getStoreProductList(store);
     }
 
-
-
-
 }
