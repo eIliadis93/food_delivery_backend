@@ -5,7 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -33,8 +33,9 @@ public class Store extends BaseModel {
     @Column(length = 10, nullable = false)
     @NotNull
     private StoreCategory storeCategory;
-    @ManyToMany
-    private List<Product> productList;
+    @ToString.Exclude
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<StoreProduct> storeProducts;
 
 
 }
