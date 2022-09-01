@@ -1,15 +1,13 @@
 package com.team3.fooddeliverybackend.controller;
 
 import com.team3.fooddeliverybackend.base.BaseComponent;
-import com.team3.fooddeliverybackend.domain.Account;
 import com.team3.fooddeliverybackend.domain.BaseModel;
 import com.team3.fooddeliverybackend.service.BaseService;
-import lombok.Builder;
-import lombok.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 public abstract class BaseController<T extends BaseModel> extends BaseComponent {
@@ -27,19 +25,19 @@ public abstract class BaseController<T extends BaseModel> extends BaseComponent 
     }
 
     @PostMapping
-    public ResponseEntity<T> create( @RequestBody final T entity) {
+    public ResponseEntity<T> create(@Valid @RequestBody final T entity) {
         return new ResponseEntity<>((getBaseService().create(entity)),
                 HttpStatus.CREATED);
     }
     @PostMapping(headers = "list")
-    public ResponseEntity<List<T>>createAll(@RequestBody List<T> entities) {
+    public ResponseEntity<List<T>>createAll(@Valid @RequestBody List<T> entities) {
         return new ResponseEntity<>(getBaseService().createAll(entities),
                 HttpStatus.CREATED);
     }
 
     @PutMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update( @RequestBody final T entity) {
+    public void update(@Valid @RequestBody final T entity) {
         getBaseService().update(entity);
     }
 
@@ -51,7 +49,7 @@ public abstract class BaseController<T extends BaseModel> extends BaseComponent 
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete( @RequestBody final T entity) {
+    public void delete(@Valid @RequestBody final T entity) {
         if (getBaseService().exists(entity)) {
             getBaseService().delete(entity);
         }

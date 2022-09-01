@@ -36,10 +36,8 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 			orderRepository.getOrderItems(order).clear();
 		}
 
-		if (checkNullability(order, storeProduct)) {
-			return;
-		}
-
+		checkNullability(order, storeProduct);
+		
 		boolean increasedQuantity = false;
 		for (OrderItem oi : order.getOrderItems()) {
 			if (oi.getStoreProduct().getProduct().getSerial().equals(storeProduct.getProduct().getSerial())) {
