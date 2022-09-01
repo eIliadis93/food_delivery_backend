@@ -1,8 +1,10 @@
 package com.team3.fooddeliverybackend.service;
 
-import com.team3.fooddeliverybackend.domain.Product;
 import com.team3.fooddeliverybackend.domain.Store;
 import com.team3.fooddeliverybackend.domain.StoreCategory;
+import com.team3.fooddeliverybackend.domain.StoreProduct;
+
+import java.util.List;
 
 public interface StoreService extends BaseService<Store>{
 
@@ -10,10 +12,12 @@ public interface StoreService extends BaseService<Store>{
 
     Store findByStoreCategory(StoreCategory storeCategory);
 
-    void addProduct(Store store, Product product);
+    void addStoreProduct(Store store, StoreProduct storeProduct);
 
-    void updateProduct(Store store, Product product);
+    void updateStoreProduct(Store store, StoreProduct storeProduct);
 
-    void removeProduct(Store store , Product product);
+    void removeStoreProduct(Store store , StoreProduct storeProduct);
+
+    List<StoreProduct> getStoreProductList(Store store);
 
 }

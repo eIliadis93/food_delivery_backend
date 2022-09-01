@@ -1,12 +1,14 @@
 package com.team3.fooddeliverybackend.service;
 
-import com.team3.fooddeliverybackend.domain.Product;
 import com.team3.fooddeliverybackend.domain.Store;
 import com.team3.fooddeliverybackend.domain.StoreCategory;
+import com.team3.fooddeliverybackend.domain.StoreProduct;
 import com.team3.fooddeliverybackend.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -34,26 +36,34 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     }
 
     @Override
-    public void addProduct(Store store, Product product) {
-        store.getProductList().add(product);
-        logger.info("Product {} has been added to Store {}", product, store);
+    public void addStoreProduct(Store store, StoreProduct storeProduct) {
+        storeRepository.getStoreProductList(store).add(storeProduct);
+        logger.info("Product {} has been added to Store {}", storeProduct, store);
     }
 
     @Override
-    public void updateProduct(Store store, Product product) {
-        if(store.getProductList().contains(product)) {
-            store.getProductList().removeIf(pr -> pr.getSerial().equals(product.getSerial()));
-            store.getProductList().add(Product.builder().build());
+    public void updateStoreProduct(Store store, StoreProduct storeProduct) {
+        if(storeRepository.getStoreProductList(store).contains(storeProduct)) {
+            storeRepository.getStoreProductList(store).removeIf(sp -> sp.equals(storeProduct.getProduct().getSerial()));
+            storeRepository.getStoreProductList(store).add(StoreProduct.builder().build());
 
-            logger.info("Product[{}] updated in Store[{}]", product, store);
+            logger.info("Product[{}] updated in Store[{}]", storeProduct, store);
         }
-        logger.info("Product with name {} does not exist in Store {}", product, store);
+        logger.info("Product with name {} does not exist in Store {}", storeProduct, store);
     }
 
     @Override
-    public void removeProduct(Store store, Product product) {
-        store.getProductList().remove(product);
-        logger.info("Product {} has been removed from Store {}", product, store);
+    public void removeStoreProduct(Store store, StoreProduct storeProduct) {
+        storeRepository.getStoreProductList(store).remove(storeProduct);
+        logger.info("Product {} has been removed from Store {}", storeProduct, store);
     }
+
+    @Override
+    public List<StoreProduct> getStoreProductList(Store store) {
+        return storeRepository.getStoreProductList(store);
+    }
+
+
+
 
 }

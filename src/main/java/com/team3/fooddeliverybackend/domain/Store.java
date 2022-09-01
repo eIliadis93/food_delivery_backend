@@ -33,8 +33,9 @@ public class Store extends BaseModel {
     @Column(length = 10, nullable = false)
     @NotNull
     private StoreCategory storeCategory;
-    @ManyToMany
-    private List<Product> productList;
+    @ToString.Exclude
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<StoreProduct> storeProducts;
 
 
 }

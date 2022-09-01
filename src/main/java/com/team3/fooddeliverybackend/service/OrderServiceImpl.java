@@ -32,8 +32,8 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 	}
 
 	@Override
-	public void addItem(Order order, Product product, int quantity) {
-		if (checkNullability(order, product)) {
+	public void addItem(Order order, StoreProduct storeProduct, int quantity) {
+		if (checkNullability(order, storeProduct)) {
 			return;
 		}
 
@@ -41,7 +41,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 
 		// If product is already contained in the order, don't add it again, just increase the quantity accordingly
 		for (OrderItem oi : order.getOrderItems()) {
-			if (oi.getProduct().getSerial().equals(product.getSerial())) {
+			if (oi.getStoreProduct().getProduct().getSerial().equals(storeProduct.getProduct().getSerial())) {
 				oi.setQuantity(oi.getQuantity() + quantity);
 				increasedQuantity = true;
 				break;
@@ -49,32 +49,32 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 		}
 
 		if (!increasedQuantity) {
-			order.getOrderItems().add(newOrderItem(order, product, quantity));
+			order.getOrderItems().add(newOrderItem(order, storeProduct, quantity));
 		}
 
-		logger.debug("Product[{}] added to Order[{}]", product, order);
+		logger.debug("Product[{}] added to Order[{}]", storeProduct, order);
 	}
 
 	@Override
-	public void updateItem(Order order, Product product, int quantity) {
-		if (checkNullability(order, product)) {
+	public void updateItem(Order order, StoreProduct storeProduct, int quantity) {
+		if (checkNullability(order, storeProduct)) {
 			return;
 		}
 
-		order.getOrderItems().removeIf(oi -> oi.getProduct().getSerial().equals(product.getSerial()));
-		order.getOrderItems().add(newOrderItem(order, product, quantity));
+		order.getOrderItems().removeIf(oi -> oi.getStoreProduct().getProduct().getSerial().equals(storeProduct.getProduct().getSerial()));
+		order.getOrderItems().add(newOrderItem(order, storeProduct, quantity));
 
-		logger.debug("Product[{}] updated in Order[{}]", product, order);
+		logger.debug("Product[{}] updated in Order[{}]", storeProduct, order);
 	}
 
 	@Override
-	public void removeItem(Order order, Product product) {
-		if (checkNullability(order, product)) {
+	public void removeItem(Order order, StoreProduct storeProduct) {
+		if (checkNullability(order, storeProduct)) {
 			return;
 		}
 
-		order.getOrderItems().removeIf(oi -> oi.getProduct().getSerial().equals(product.getSerial()));
-		logger.debug("Product[{}] removed from Order[{}]", product, order);
+		order.getOrderItems().removeIf(oi -> oi.getStoreProduct().getProduct().getSerial().equals(storeProduct.getProduct().getSerial()));
+		logger.debug("Product[{}] removed from Order[{}]", storeProduct, order);
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
@@ -101,12 +101,12 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 		throw new NoSuchElementException(String.format("There was no order found matching id %d.", id));
 	}
 
-	private boolean checkNullability(Order order, Product product) {
+	private boolean checkNullability(Order order, StoreProduct storeProduct) {
 		if (order == null) {
 			logger.warn("Order is null.");
 			return true;
 		}
-		if (product == null) {
+		if (storeProduct == null) {
 			logger.warn("Product is null.");
 			return true;
 		}
@@ -117,8 +117,8 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 		return order != null && !order.getOrderItems().isEmpty() && order.getAccount() != null;
 	}
 
-	private OrderItem newOrderItem(Order order, Product product, int quantity) {
-		return OrderItem.builder().product(product).order(order).quantity(quantity).price(product.getPrice()).build();
+	private OrderItem newOrderItem(Order order, StoreProduct storeProduct, int quantity) {
+		return OrderItem.builder().storeProduct(storeProduct).order(order).quantity(quantity).price(storeProduct.getPrice()).build();
 	}
 
 	private BigDecimal givePayAmount(Order order) {
