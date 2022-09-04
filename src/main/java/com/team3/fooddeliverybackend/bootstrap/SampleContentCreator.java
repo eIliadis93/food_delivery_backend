@@ -1,10 +1,7 @@
 package com.team3.fooddeliverybackend.bootstrap;
 
 import com.team3.fooddeliverybackend.base.BaseComponent;
-import com.team3.fooddeliverybackend.domain.Account;
-import com.team3.fooddeliverybackend.domain.CreditCard;
-import com.team3.fooddeliverybackend.domain.Product;
-import com.team3.fooddeliverybackend.domain.ProductCategory;
+import com.team3.fooddeliverybackend.domain.*;
 import com.team3.fooddeliverybackend.service.AccountService;
 import com.team3.fooddeliverybackend.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +22,8 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
     @Override
     public void run(String... args) throws Exception {
 
+
+//
         List<Account> accounts = accountService.createAll(
                 Account.builder().email("guest1@gmail.com").password("admin1234!")
                         .firstname("Joey").lastname("Tribbiani").age(30).build(),
@@ -53,18 +52,47 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
         );
         logger.info("Created products {}", products);
 
-        List<CreditCard> creditCards = List.of(
-                CreditCard.builder().cardNumber(Long.valueOf("1012111312141315")).holderName("J Tribbiani")
-                        .expirationDate("12/12/2022").threeDigitCode(123).account(accounts.get(0)).build(),
-                CreditCard.builder().cardNumber(Long.valueOf("1113121413151416")).holderName("C Bing")
-                        .expirationDate("11/11/2023").threeDigitCode(234).account(accounts.get(1)).build(),
-                CreditCard.builder().cardNumber(Long.valueOf("1214131514161517")).holderName("R Green")
-                        .expirationDate("10/10/2024").threeDigitCode(345).account(accounts.get(2)).build(),
-                CreditCard.builder().cardNumber(Long.valueOf("1315141615171618")).holderName("M Geller")
-                        .expirationDate("10/11/2023").threeDigitCode(456).account(accounts.get(3)).build(),
-                CreditCard.builder().cardNumber(Long.valueOf("1113121413151416")).holderName("R Bing")
-                        .expirationDate("11/12/2025").threeDigitCode(567).account(accounts.get(4)).build()
-        );
+//        List<CreditCard> creditCards = List.of(
+//                CreditCard.builder().cardNumber(Long.valueOf("1012111312141315")).holderName("J Tribbiani")
+//                        .expirationDate("12/12/2022").threeDigitCode(123).account(accounts.get(0)).build(),
+//                CreditCard.builder().cardNumber(Long.valueOf("1113121413151416")).holderName("C Bing")
+//                        .expirationDate("11/11/2023").threeDigitCode(234).account(accounts.get(1)).build(),
+//                CreditCard.builder().cardNumber(Long.valueOf("1214131514161517")).holderName("R Green")
+//                        .expirationDate("10/10/2024").threeDigitCode(345).account(accounts.get(2)).build(),
+//                CreditCard.builder().cardNumber(Long.valueOf("1315141615171618")).holderName("M Geller")
+//                        .expirationDate("10/11/2023").threeDigitCode(456).account(accounts.get(3)).build(),
+//                CreditCard.builder().cardNumber(Long.valueOf("1113121413151416")).holderName("R Bing")
+//                        .expirationDate("11/12/2025").threeDigitCode(567).account(accounts.get(4)).build()
+//        );
+
+
+//        List<Address> addresses = List.of(
+//                Address.builder()
+//                        .streetName("west side")
+//                        .streetNumber(2)
+//                        .town("Manhattan").account(accounts.get(1))
+//                        .build(),
+//                Address.builder()
+//                        .streetName("east side")
+//                        .streetNumber(17)
+//                        .town("Manhattan").account(accounts.get(2))
+//                        .build(),
+//                Address.builder()
+//                        .streetName("New York Ave")
+//                        .streetNumber(25)
+//                        .town("Brooklyn").account(accounts.get(3))
+//                        .build(),
+//                Address.builder()
+//                        .streetName("73rd Ave")
+//                        .streetNumber(45)
+//                        .town("Queens").account(accounts.get(4))
+//                        .build(),
+//                Address.builder()
+//                        .streetName("W 130th St")
+//                        .streetNumber(19)
+//                        .town("Harlem").account(accounts.get(5))
+//                        .build()
+//        );
     }
 
 }
