@@ -34,6 +34,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 		if(!Objects.equals(order.getStore().getId(), storeProduct.getStore().getId())){
 			logger.info("The previous order items of the order {} will be cleared since the Store is changed", order);
 			orderRepository.getOrderItems(order).clear();
+			order.setStore(storeProduct.getStore());
 		}
 
 		checkNullability(order, storeProduct);

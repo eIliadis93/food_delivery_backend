@@ -3,6 +3,7 @@ package com.team3.fooddeliverybackend.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Getter
@@ -16,11 +17,15 @@ import java.util.Set;
 @SequenceGenerator(name = "idGenerator", sequenceName = "ACCOUNTS_SEQ", initialValue = 1, allocationSize = 1)
 public class Account extends BaseModel{
     @Column(length = 50, nullable = false, unique = true)
+    @NotNull
     private String email;
+    @NotNull
     @Column(length = 20, nullable = false)
     private String password;
+    @NotNull
     @Column(length = 20, nullable = false)
     private String firstname;
+    @NotNull
     @Column(length = 30, nullable = false)
     private String lastname;
     private Integer age;
