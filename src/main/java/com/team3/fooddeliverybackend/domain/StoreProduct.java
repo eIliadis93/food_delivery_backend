@@ -27,6 +27,9 @@ public class StoreProduct extends BaseModel{
     @JsonIgnore
     private Store store;
 
+    @Column
+    private String imgURL;
+
     @Column(precision = 10, scale = 2, nullable = false)
     @NotNull
     private BigDecimal price;

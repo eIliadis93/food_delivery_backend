@@ -33,6 +33,8 @@ public class Store extends BaseModel {
     @Column(length = 10, nullable = false)
     @NotNull
     private StoreCategory storeCategory;
+    @Column
+    private String imgURL;
     @ToString.Exclude
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<StoreProduct> storeProducts;
