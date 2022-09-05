@@ -20,7 +20,7 @@ public class Account extends BaseModel{
     @NotNull
     private String email;
     @NotNull
-    @Column(length = 20, nullable = false)
+    @Column(length = 25, nullable = false)
     private String password;
     @NotNull
     @Column(length = 20, nullable = false)
