@@ -1,6 +1,7 @@
 package com.team3.fooddeliverybackend.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "STORES")
+@Table(name = "STORES", indexes = {@Index(name = "STORES_IDX_01", columnList = "name")})
 @SequenceGenerator(name = "idGenerator", sequenceName = "STORES_SEQ", initialValue = 1, allocationSize = 1)
 public class Store extends BaseModel {
 
@@ -37,6 +38,7 @@ public class Store extends BaseModel {
     private String imgURL;
     @ToString.Exclude
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Product> products;
 
 

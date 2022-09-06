@@ -35,7 +35,19 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
         logger.info("Searching store by category {}.", storeCategory);
         return storeRepository.findByStoreCategory(storeCategory);
     }
-    
+
+    @Override
+    public void addProducts(Store store, Product product) {
+        store.getProducts().add(product);
+        logger.info("Product {} added to Store {}.", product, store);
+    }
+
+    @Override
+    public void removeProducts(Store store, Product product) {
+        store.getProducts().remove(product);
+        logger.info("Product {} removed from Store {}.", product, store);
+    }
+
 
     @Override
     public Set<Product> getProductsList(Store store) {

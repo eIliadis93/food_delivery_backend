@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "PRODUCTS", indexes = {@Index(name = "PRODUCT_IDX_01", columnList = "serial"),})
+@Table(name = "PRODUCTS", indexes = {@Index(name = "PRODUCT_IDX_01", columnList = "serial")})
 @SequenceGenerator(name = "idGenerator", sequenceName = "PRODUCTS_SEQ", initialValue = 1, allocationSize = 1)
 public class Product extends BaseModel {
     @Column(length = 50, nullable = false)
@@ -26,6 +26,8 @@ public class Product extends BaseModel {
     @Column(precision = 10, scale = 2, nullable = true)
     @NotNull
     private BigDecimal price;
+    @Column
+    private String imgURL;
     @Enumerated(EnumType.STRING)
     @Column(length = 15, nullable = false)
     @NotNull

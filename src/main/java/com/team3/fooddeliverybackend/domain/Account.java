@@ -14,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "ACCOUNTS")
+@Table(name = "ACCOUNTS", indexes = {@Index(name = "ACCOUNTS_IDX_01", columnList = "email")})
 @SequenceGenerator(name = "idGenerator", sequenceName = "ACCOUNTS_SEQ", initialValue = 1, allocationSize = 1)
 public class Account extends BaseModel {
     @Column(length = 50, nullable = false, unique = true)
@@ -31,10 +31,11 @@ public class Account extends BaseModel {
     private String lastname;
     private Integer age;
     @ToString.Exclude
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<Address> addresses;
     @ToString.Exclude
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<CreditCard> creditCards;
 

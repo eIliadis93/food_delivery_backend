@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("account")
+@RequestMapping("accounts")
 public class AccountController extends BaseController<Account> {
     private final AccountService accountService;
 
@@ -32,28 +32,5 @@ public class AccountController extends BaseController<Account> {
         return ResponseEntity.ok(byEmail);
     }
 
-//    @PostMapping("{creditCard}")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public void addCreditCard(@RequestBody @PathVariable @Valid CreditCard creditCard, Account account) {
-//        accountService.addCreditCards(creditCard, account);
-//    }
-//
-//    @DeleteMapping("{creditCard}")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void removeCreditCard(@PathVariable CreditCard creditCard, Account account) {
-//        accountService.removeCreditCards(creditCard, account);
-//    }
-//
-//    @PostMapping("{address}")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public void addAddress(Account account, @RequestBody @PathVariable @Valid Address address) {
-//        accountService.addAddresses(account, address);
-//    }
-//
-//    @DeleteMapping("{address}")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void removeAddress(Account account, @PathVariable Address address) {
-//        accountService.removeAddresses(account, address);
-//    }
 
 }

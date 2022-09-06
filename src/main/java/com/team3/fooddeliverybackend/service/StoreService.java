@@ -13,12 +13,10 @@ public interface StoreService extends BaseService<Store> {
 
     List<Store> findByStoreCategory(StoreCategory storeCategory);
 
-    //    void addStoreProduct(Store store, Product product);
-//
-//    void updateStoreProducts(Store store, Product product);
-//
-//    void removeStoreProducts(Store store, Product product);
-//
+    void addProducts(Store store, Product product);
+
+    void removeProducts(Store store, Product product);
+
     Set<Product> getProductsList(Store store);
 
 }
