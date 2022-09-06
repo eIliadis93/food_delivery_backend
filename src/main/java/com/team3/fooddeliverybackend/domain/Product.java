@@ -1,5 +1,6 @@
 package com.team3.fooddeliverybackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,4 +30,8 @@ public class Product extends BaseModel {
     @Column(length = 15, nullable = false)
     @NotNull
     private ProductCategory productCategory;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @NotNull
+    @JsonIgnore
+    private Store store;
 }

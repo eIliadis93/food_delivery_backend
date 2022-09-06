@@ -25,16 +25,28 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
     @Override
     public void run(String... args) throws Exception {
 
-        Product product1 = productService.create(Product.builder().name("Pizza Special").serial("asdasd").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.FOOD).build());
-        Product product2 = productService.create(Product.builder().name("Coca Cola").serial("asdasdasd").price(BigDecimal.valueOf(1.50)).productCategory(ProductCategory.DRINK).build());
-        Product product3 = productService.create(Product.builder().name("Freddo Espresso").serial("asdasdasdasd").price(BigDecimal.valueOf(2.30)).productCategory(ProductCategory.COFFEE).build());
-        Product product4 = productService.create(Product.builder().name("Black Forest").serial("qweqwe").price(BigDecimal.valueOf(14.90)).productCategory(ProductCategory.DESERT).build());
-        Product product5 = productService.create(Product.builder().name("Souvlaki").serial("zxczxc").price(BigDecimal.valueOf(3.50)).productCategory(ProductCategory.FOOD).build());
-        Product product6 = productService.create(Product.builder().name("Xwriatikh").serial("qweasd").price(BigDecimal.valueOf(5.60)).productCategory(ProductCategory.FOOD).build());
-        Product product7 = productService.create(Product.builder().name("Burger").serial("asdfqwer").price(BigDecimal.valueOf(7.90)).productCategory(ProductCategory.FOOD).build());
-        Product product8 = productService.create(Product.builder().name("Ice Cream").serial("asdasda95d").price(BigDecimal.valueOf(2.80)).productCategory(ProductCategory.DESERT).build());
-        Product product9 = productService.create(Product.builder().name("Margarita").serial("asdasda963d").price(BigDecimal.valueOf(8)).productCategory(ProductCategory.DRINK).build());
-        Product product10 = productService.create(Product.builder().name("Spaghetti").serial("asdasda4521sd").price(BigDecimal.valueOf(6.30)).productCategory(ProductCategory.FOOD).build());
+        Store store1 = storeService.create(Store.builder().email("store1@gmail.com").name("Mc Ronald's").storeCategory(StoreCategory.FOOD).location("Athens").phoneNumber(1234567891).build());
+        Store store2 = storeService.create(Store.builder().email("store2@gmail.com").name("Moodys").storeCategory(StoreCategory.GROCERY).location("Athens").phoneNumber(1234980891).build());
+        Store store3 = storeService.create(Store.builder().email("store3@gmail.com").name("Soublaki").storeCategory(StoreCategory.FOOD).location("Athens").phoneNumber(1234227891).build());
+        Store store4 = storeService.create(Store.builder().email("store4@gmail.com").name("Pizza").storeCategory(StoreCategory.FOOD).location("Athens").phoneNumber(1234337891).build());
+        Store store5 = storeService.create(Store.builder().email("store5@gmail.com").name("Kebab").storeCategory(StoreCategory.FOOD).location("Athens").phoneNumber(1234447891).build());
+        Store store6 = storeService.create(Store.builder().email("store6@gmail.com").name("Sklavenitis").storeCategory(StoreCategory.GROCERY).location("Athens").phoneNumber(1234667891).build());
+        Store store7 = storeService.create(Store.builder().email("store7@gmail.com").name("Creperie").storeCategory(StoreCategory.FOOD).location("Athens").phoneNumber(1234577891).build());
+        Store store8 = storeService.create(Store.builder().email("store8@gmail.com").name("Coffee").storeCategory(StoreCategory.FOOD).location("Athens").phoneNumber(1234887891).build());
+        Store store9 = storeService.create(Store.builder().email("store9@gmail.com").name("Burgertown").storeCategory(StoreCategory.FOOD).location("Athens").phoneNumber(1234997891).build());
+        Store store10 = storeService.create(Store.builder().email("store10@gmail.com").name("Branch").storeCategory(StoreCategory.GROCERY).location("Athens").phoneNumber(1233367891).build());
+
+
+        Product product1 = productService.create(Product.builder().name("Pizza Special").serial("asdasd").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.FOOD).store(store1).build());
+        Product product2 = productService.create(Product.builder().name("Coca Cola").serial("asdasdasd").price(BigDecimal.valueOf(1.50)).productCategory(ProductCategory.DRINK).store(store2).build());
+        Product product3 = productService.create(Product.builder().name("Freddo Espresso").serial("asdasdasdasd").price(BigDecimal.valueOf(2.30)).productCategory(ProductCategory.COFFEE).store(store3).build());
+        Product product4 = productService.create(Product.builder().name("Black Forest").serial("qweqwe").price(BigDecimal.valueOf(14.90)).productCategory(ProductCategory.DESERT).store(store4).build());
+        Product product5 = productService.create(Product.builder().name("Souvlaki").serial("zxczxc").price(BigDecimal.valueOf(3.50)).productCategory(ProductCategory.FOOD).store(store5).build());
+        Product product6 = productService.create(Product.builder().name("Xwriatikh").serial("qweasd").price(BigDecimal.valueOf(5.60)).productCategory(ProductCategory.FOOD).store(store6).build());
+        Product product7 = productService.create(Product.builder().name("Burger").serial("asdfqwer").price(BigDecimal.valueOf(7.90)).productCategory(ProductCategory.FOOD).store(store7).build());
+        Product product8 = productService.create(Product.builder().name("Ice Cream").serial("asdasda95d").price(BigDecimal.valueOf(2.80)).productCategory(ProductCategory.DESERT).store(store8).build());
+        Product product9 = productService.create(Product.builder().name("Margarita").serial("asdasda963d").price(BigDecimal.valueOf(8)).productCategory(ProductCategory.DRINK).store(store9).build());
+        Product product10 = productService.create(Product.builder().name("Spaghetti").serial("asdasda4521sd").price(BigDecimal.valueOf(6.30)).productCategory(ProductCategory.FOOD).store(store10).build());
 
 
         Account account1 = accountService.create(Account.builder().firstname("Vagelis").lastname("Iliadis").age(29).email("e.iliadis@pmmretail.com").password("84848A484frf").build());
@@ -48,16 +60,6 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
         Account account9 = accountService.create(Account.builder().firstname("Erebos").lastname("Black").age(46).email("e.black@pmmretail.com").password("ereboskgnf84848A484frf").build());
         Account account10 = accountService.create(Account.builder().firstname("Grey").lastname("Smith").age(18).email("g.smith@pmmretail.com").password("848fttg!*48A484frf").build());
 
-        Store store1 = storeService.create(Store.builder().email("store1@gmail.com").name("Mc Ronald's").storeCategory(StoreCategory.FOOD).location("Athens").phoneNumber(1234567891).build());
-        Store store2 = storeService.create(Store.builder().email("store2@gmail.com").name("Moodys").storeCategory(StoreCategory.GROCERY).location("Athens").phoneNumber(1234980891).build());
-        Store store3 = storeService.create(Store.builder().email("store3@gmail.com").name("Soublaki").storeCategory(StoreCategory.FOOD).location("Athens").phoneNumber(1234227891).build());
-        Store store4 = storeService.create(Store.builder().email("store4@gmail.com").name("Pizza").storeCategory(StoreCategory.FOOD).location("Athens").phoneNumber(1234337891).build());
-        Store store5 = storeService.create(Store.builder().email("store5@gmail.com").name("Kebab").storeCategory(StoreCategory.FOOD).location("Athens").phoneNumber(1234447891).build());
-        Store store6 = storeService.create(Store.builder().email("store6@gmail.com").name("Sklavenitis").storeCategory(StoreCategory.GROCERY).location("Athens").phoneNumber(1234667891).build());
-        Store store7 = storeService.create(Store.builder().email("store7@gmail.com").name("Creperie").storeCategory(StoreCategory.FOOD).location("Athens").phoneNumber(1234577891).build());
-        Store store8 = storeService.create(Store.builder().email("store8@gmail.com").name("Coffee").storeCategory(StoreCategory.FOOD).location("Athens").phoneNumber(1234887891).build());
-        Store store9 = storeService.create(Store.builder().email("store9@gmail.com").name("Burgertown").storeCategory(StoreCategory.FOOD).location("Athens").phoneNumber(1234997891).build());
-        Store store10 = storeService.create(Store.builder().email("store10@gmail.com").name("Branch").storeCategory(StoreCategory.GROCERY).location("Athens").phoneNumber(1233367891).build());
 
         Address address1 = addressService.create(Address.builder().streetName("Athens").streetNumber(78).town("Attiki").account(account1).build());
         logger.info("Created Address {}.", address1);

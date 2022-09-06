@@ -1,8 +1,8 @@
 package com.team3.fooddeliverybackend.service;
 
+import com.team3.fooddeliverybackend.domain.Product;
 import com.team3.fooddeliverybackend.domain.Store;
 import com.team3.fooddeliverybackend.domain.StoreCategory;
-import com.team3.fooddeliverybackend.domain.StoreProduct;
 
 import java.util.List;
 import java.util.Set;
@@ -19,6 +19,6 @@ public interface StoreService extends BaseService<Store> {
 //
 //    void removeStoreProducts(Store store, Product product);
 //
-    Set<StoreProduct> getStoreProductsList(Store store);
+    Set<Product> getProductsList(Store store);
 
 }

@@ -10,7 +10,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
 
 @Service
 @RequiredArgsConstructor
@@ -29,19 +30,15 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 	}
 
 	@Override
-	public void addItem(Order order, StoreProduct storeProduct, int quantity) {
-
-		if(!Objects.equals(order.getStore().getId(), storeProduct.getStore().getId())){
-			logger.info("The previous order items of the order {} will be cleared since the Store is changed", order);
-			orderRepository.getOrderItems(order).clear();
-			order.setStore(storeProduct.getStore());
+	public void addItem(Order order, Product product, int quantity) {
+		if (checkNullability(order, product)) {
+			return;
 		}
 
-		checkNullability(order, storeProduct);
-		
 		boolean increasedQuantity = false;
+
 		for (OrderItem oi : order.getOrderItems()) {
-			if (oi.getStoreProduct().getProduct().getSerial().equals(storeProduct.getProduct().getSerial())) {
+			if (oi.getProduct().getSerial().equals(product.getSerial())) {
 				oi.setQuantity(oi.getQuantity() + quantity);
 				increasedQuantity = true;
 				break;
@@ -49,39 +46,39 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 		}
 
 		if (!increasedQuantity) {
-			order.getOrderItems().add(newOrderItem(order, storeProduct, quantity));
+			order.getOrderItems().add(newOrderItem(order, product, quantity));
 		}
 
-		logger.debug("Product[{}] added to Order[{}]", storeProduct, order);
+		logger.debug("Product[{}] added to Order[{}]", product, order);
 	}
 
 	@Override
-	public void updateItem(Order order, StoreProduct storeProduct, int quantity) {
-		if (checkNullability(order, storeProduct)) {
+	public void updateItem(Order order, Product product, int quantity) {
+		if (checkNullability(order, product)) {
 			return;
 		}
 
-		order.getOrderItems().removeIf(oi -> oi.getStoreProduct().getProduct().getSerial().equals(storeProduct.getProduct().getSerial()));
-		order.getOrderItems().add(newOrderItem(order, storeProduct, quantity));
+		order.getOrderItems().removeIf(oi -> oi.getProduct().getSerial().equals(product.getSerial()));
+		order.getOrderItems().add(newOrderItem(order, product, quantity));
 
-		logger.debug("Product[{}] updated in Order[{}]", storeProduct, order);
+		logger.debug("Product[{}] updated in Order[{}]", product, order);
 	}
 
 	@Override
-	public void removeItem(Order order, StoreProduct storeProduct) {
-		if (checkNullability(order, storeProduct)) {
+	public void removeItem(Order order, Product product) {
+		if (checkNullability(order, product)) {
 			return;
 		}
 
-		order.getOrderItems().removeIf(oi -> oi.getStoreProduct().getProduct().getSerial().equals(storeProduct.getProduct().getSerial()));
-		logger.debug("Product[{}] removed from Order[{}]", storeProduct, order);
+		order.getOrderItems().removeIf(oi -> oi.getProduct().getSerial().equals(product.getSerial()));
+		logger.debug("Product[{}] removed from Order[{}]", product, order);
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
 	public Order checkout(Order order, PaymentMethod paymentMethod) {
 		if (!validate(order)) {
 			logger.warn("Order should have customer, order items, and payment type defined before being able to " +
-								"checkout the order.");
+					"checkout the order.");
 			return null;
 		}
 
@@ -92,21 +89,12 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 		return create(order);
 	}
 
-	@Override
-	public Order getLazy(Long id) {
-		Optional<Order> order = orderRepository.getLazy(id);
-		if (order.isPresent()) {
-			return order.get();
-		}
-		throw new NoSuchElementException(String.format("There was no order found matching id %d.", id));
-	}
-
-	private boolean checkNullability(Order order, StoreProduct storeProduct) {
+	private boolean checkNullability(Order order, Product product) {
 		if (order == null) {
 			logger.warn("Order is null.");
 			return true;
 		}
-		if (storeProduct == null) {
+		if (product == null) {
 			logger.warn("Product is null.");
 			return true;
 		}
@@ -117,15 +105,15 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 		return order != null && !order.getOrderItems().isEmpty() && order.getAccount() != null;
 	}
 
-	private OrderItem newOrderItem(Order order, StoreProduct storeProduct, int quantity) {
-		return OrderItem.builder().storeProduct(storeProduct).order(order).quantity(quantity).price(storeProduct.getPrice()).build();
+	private OrderItem newOrderItem(Order order, Product product, int quantity) {
+		return OrderItem.builder().product(product).order(order).quantity(quantity).price(product.getPrice()).build();
 	}
 
 	private BigDecimal givePayAmount(Order order) {
 		//@formatter:off
 		BigDecimal totalCost = order.getOrderItems().stream()
-									   .map(oi -> oi.getPrice().multiply(BigDecimal.valueOf(oi.getQuantity())))
-									   .reduce(BigDecimal.ZERO, BigDecimal::add);
+				.map(oi -> oi.getPrice().multiply(BigDecimal.valueOf(oi.getQuantity())))
+				.reduce(BigDecimal.ZERO, BigDecimal::add);
 		//@formatter:on
 		logger.debug("Order[{}], totalCost: {}.", order.getId(), totalCost);
 

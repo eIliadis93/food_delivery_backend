@@ -37,7 +37,7 @@ public class Store extends BaseModel {
     private String imgURL;
     @ToString.Exclude
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private Set<StoreProduct> storeProducts;
+    private Set<Product> products;
 
 
 }
