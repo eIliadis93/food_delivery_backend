@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "STORE_PRODUCTS")
 @SequenceGenerator(name = "idGenerator", sequenceName = "STORE_PRODUCTS_SEQ", initialValue = 1, allocationSize = 1)
-public class StoreProduct extends BaseModel{
+public class StoreProduct extends BaseModel {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -25,6 +25,7 @@ public class StoreProduct extends BaseModel{
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @NotNull
     @JsonIgnore
+    @JoinColumn(name = "STORE_ID", referencedColumnName = "ID")
     private Store store;
 
     @Column

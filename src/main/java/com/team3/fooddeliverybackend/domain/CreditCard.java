@@ -29,5 +29,7 @@ public class CreditCard extends BaseModel {
     @NotNull
     private int threeDigitCode;
     @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
+    @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ID")
     private Account account;
 }
