@@ -15,13 +15,13 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Table(name = "CREDITCARD")
 @SequenceGenerator(name = "idGenerator", sequenceName = "CREDITCARD_SEQ", initialValue = 1, allocationSize = 1)
-public class CreditCard extends BaseModel{
+public class CreditCard extends BaseModel {
     @Column(length = 16, nullable = false, unique = true)
     @NotNull
     private Long cardNumber;
     @Column(length = 30, nullable = false)
     @NotNull
-    private  String holderName;
+    private String holderName;
     @Column(length = 5, nullable = false)
     @NotNull
     private String expirationDate;
@@ -29,6 +29,5 @@ public class CreditCard extends BaseModel{
     @NotNull
     private int threeDigitCode;
     @ManyToOne(fetch = FetchType.LAZY)
-    @NotNull
     private Account account;
 }
