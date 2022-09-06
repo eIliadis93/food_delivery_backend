@@ -1,6 +1,7 @@
 package com.team3.fooddeliverybackend.controller;
 
 import com.team3.fooddeliverybackend.domain.Order;
+import com.team3.fooddeliverybackend.domain.PaymentMethod;
 import com.team3.fooddeliverybackend.domain.Product;
 import com.team3.fooddeliverybackend.service.BaseService;
 import com.team3.fooddeliverybackend.service.OrderService;
@@ -38,6 +39,13 @@ public class OrderController extends BaseController<Order> {
     public void updateItem(@RequestBody @PathVariable @Valid Order order, Product product, int quantity) {
         orderService.updateItem(order, product, quantity);
     }
+
+    @GetMapping("/checkout")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void checkOut(@RequestBody @PathVariable @Valid Order order, PaymentMethod paymentMethod){
+        orderService.checkout(order,paymentMethod);
+    }
+
 
 
 }
