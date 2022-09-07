@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -119,5 +121,12 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 
 		return totalCost;
 	}
+	public Set<Order> getOrdersByAccount(Account account){
+		return orderRepository.getOrdersByAccount(account);
+
+
+	}
+
+
 
 }
