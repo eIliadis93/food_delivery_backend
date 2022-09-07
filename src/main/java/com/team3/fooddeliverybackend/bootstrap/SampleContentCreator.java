@@ -8,6 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.time.LocalDate;
 
 @Component
 //@Profile("populate data")
@@ -17,10 +19,9 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
     private final ProductService productService;
     private final AccountService accountService;
     private final StoreService storeService;
-
     private final CreditCardService creditCardService;
-
     private final AddressService addressService;
+    private final OrderService orderService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -104,6 +105,24 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
         logger.info("Created credit card {}.", creditCard10);
 
 //        storeService.addProducts(store1, product1);
+
+        Order order1 = orderService.initiateOrder(account1);
+        Order order2 = orderService.initiateOrder(account2);
+        Order order3 = orderService.initiateOrder(account3);
+        Order order4 = orderService.initiateOrder(account4);
+        Order order5 = orderService.initiateOrder(account5);
+        Order order6 = orderService.initiateOrder(account6);
+        Order order7 = orderService.initiateOrder(account7);
+        Order order8 = orderService.initiateOrder(account8);
+        Order order9 = orderService.initiateOrder(account9);
+        Order order10 = orderService.initiateOrder(account10);
+
+        Order order11 = orderService.create(Order.builder().account(account1).payAmount(BigDecimal.valueOf(15)).paymentMethod(PaymentMethod.CREDITCARD)
+                .store(store1).submitDate(Date.valueOf(LocalDate.now())).build());
+        Order order12 = orderService.create(Order.builder().account(account2).payAmount(BigDecimal.valueOf(50)).paymentMethod(PaymentMethod.CASH)
+                .store(store2).submitDate(Date.valueOf(LocalDate.now())).build());
+        Order order13 = orderService.create(Order.builder().account(account5).payAmount(BigDecimal.valueOf(151)).paymentMethod(PaymentMethod.CREDITCARD)
+                .store(store9).submitDate(Date.valueOf(LocalDate.now())).build());
 
     }
 
