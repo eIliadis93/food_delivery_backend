@@ -103,9 +103,7 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
         CreditCard creditCard10 = creditCardService.create(CreditCard.builder().account(account10).cardNumber(Long.valueOf("1234522222222243")).expirationDate("6/24").holderName("Holder10").threeDigitCode(723).build());
         logger.info("Created credit card {}.", creditCard10);
 
-//        accountService.addCreditCards(creditCard1, account1);
-
-//        storeService.addStoreProduct(store1, product1);
+//        storeService.addProducts(store1, product1);
 
     }
 

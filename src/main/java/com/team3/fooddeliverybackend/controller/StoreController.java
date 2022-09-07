@@ -36,8 +36,8 @@ public class StoreController extends BaseController<Store> {
         return ResponseEntity.ok(ApiResponse.<Store>builder().data(byName).build());
     }
 
-    @GetMapping(params = "storeByCategory")
-    public ResponseEntity<ApiResponse<List<Store>>> findByStoreCategory(@RequestParam StoreCategory storeCategory) {
+    @GetMapping(params = "storeCategory")
+    public ResponseEntity<ApiResponse<List<Store>>> findByStoreCategory(@RequestParam(value = "storeCategory") StoreCategory storeCategory) {
         final List<Store> byCategory = storeService.findByStoreCategory(storeCategory);
         if (byCategory == null) {
             throw new NoSuchElementException("Store not found (by category)");
