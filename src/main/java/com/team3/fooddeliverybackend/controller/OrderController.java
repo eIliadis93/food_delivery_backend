@@ -1,5 +1,6 @@
 package com.team3.fooddeliverybackend.controller;
 
+import com.team3.fooddeliverybackend.domain.Account;
 import com.team3.fooddeliverybackend.domain.Order;
 import com.team3.fooddeliverybackend.domain.PaymentMethod;
 import com.team3.fooddeliverybackend.domain.Product;
@@ -10,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -46,6 +49,11 @@ public class OrderController extends BaseController<Order> {
         orderService.checkout(order,paymentMethod);
     }
 
+    @RequestMapping(value = "/orderHistory", method = RequestMethod.GET)
+    public Set<Order> getOrderHistory(Account account){
+        return orderService.getOrdersByAccount(account);
+
+    }
 
 
 }

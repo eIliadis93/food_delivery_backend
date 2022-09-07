@@ -1,5 +1,6 @@
 package com.team3.fooddeliverybackend.repository;
 
+import com.team3.fooddeliverybackend.domain.Account;
 import com.team3.fooddeliverybackend.domain.Order;
 import com.team3.fooddeliverybackend.domain.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,5 +19,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     void updateOrderCost(Long id, BigDecimal cost);
 
     @Query(value = "SELECT * FROM ORDERS o WHERE o.orderitems", nativeQuery = true)
-    Set<OrderItem> getOrderItems(Order order);
+
+    Set<Order> getOrdersByAccount(Account account);
+
 }
