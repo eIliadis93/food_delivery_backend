@@ -48,6 +48,8 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
         Product product8 = productService.create(Product.builder().name("Ice Cream").serial("asdasda95d").price(BigDecimal.valueOf(2.80)).productCategory(ProductCategory.DESERT).store(store8).build());
         Product product9 = productService.create(Product.builder().name("Margarita").serial("asdasda963d").price(BigDecimal.valueOf(8)).productCategory(ProductCategory.DRINK).store(store9).build());
         Product product10 = productService.create(Product.builder().name("Spaghetti").serial("asdasda4521sd").price(BigDecimal.valueOf(6.30)).productCategory(ProductCategory.FOOD).store(store10).build());
+        Product product11 = productService.create(Product.builder().name("Pizza Bacon").serial("asdasdfdew3r3").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.FOOD).store(store1).build());
+        Product product12 = productService.create(Product.builder().name("Napoliten Spaghetti").serial("asdasdfdew3r45533").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.FOOD).store(store1).build());
 
 
         Account account1 = accountService.create(Account.builder().firstname("Vagelis").lastname("Iliadis").age(29).email("e.iliadis@pmmretail.com").password("84848A484frf").build());
