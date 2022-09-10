@@ -42,7 +42,7 @@ public class ProductController extends BaseController<Product> {
     public ResponseEntity<ApiResponse<List<Product>>> findProductByStore(@RequestParam(value = "findByStore") Store findByStore) {
         final List<Product> byStore = productService.findProductByStore(findByStore);
         if (byStore == null) {
-            throw new NoSuchElementException("Store not found (by category)");
+            throw new NoSuchElementException("Product not found (by Store)");
         }
         return ResponseEntity.ok(ApiResponse.<List<Product>>builder().data(byStore).build());
     }

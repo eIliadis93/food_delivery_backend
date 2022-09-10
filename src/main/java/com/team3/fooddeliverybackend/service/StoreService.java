@@ -5,7 +5,6 @@ import com.team3.fooddeliverybackend.domain.Store;
 import com.team3.fooddeliverybackend.domain.StoreCategory;
 
 import java.util.List;
-import java.util.Set;
 
 public interface StoreService extends BaseService<Store> {
 
@@ -16,7 +15,5 @@ public interface StoreService extends BaseService<Store> {
     void addProducts(Store store, Product product);
 
     void removeProducts(Store store, Product product);
-
-    Set<Product> getProductsList(Store store);
 
 }

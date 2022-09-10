@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -48,10 +47,5 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
         logger.info("Product {} removed from Store {}.", product, store);
     }
 
-
-    @Override
-    public Set<Product> getProductsList(Store store) {
-        return storeRepository.getProductsList(store);
-    }
 
 }

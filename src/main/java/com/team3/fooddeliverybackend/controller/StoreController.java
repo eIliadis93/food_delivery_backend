@@ -43,6 +43,6 @@ public class StoreController extends BaseController<Store> {
             throw new NoSuchElementException("Store not found (by category)");
         }
         return ResponseEntity.ok(ApiResponse.<List<Store>>builder().data(byCategory).build());
-
     }
+
 }
