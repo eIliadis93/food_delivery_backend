@@ -1,6 +1,7 @@
 package com.team3.fooddeliverybackend.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ import java.util.Set;
 public class Order extends BaseModel {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @NotNull
+    @JsonIgnore
     private Account account;
     @ToString.Exclude
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
@@ -28,6 +30,8 @@ public class Order extends BaseModel {
     @Column(precision = 10, scale = 2, nullable = false)
     private BigDecimal payAmount;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @NotNull
+    @JsonIgnore
     private Store store;
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
