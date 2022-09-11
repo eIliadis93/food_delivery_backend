@@ -1,9 +1,7 @@
 package com.team3.fooddeliverybackend.controller;
 
-import com.team3.fooddeliverybackend.domain.Account;
-import com.team3.fooddeliverybackend.domain.Order;
-import com.team3.fooddeliverybackend.domain.PaymentMethod;
-import com.team3.fooddeliverybackend.domain.Product;
+import com.team3.fooddeliverybackend.domain.*;
+import com.team3.fooddeliverybackend.domain.transfer.CheckoutRequest;
 import com.team3.fooddeliverybackend.service.BaseService;
 import com.team3.fooddeliverybackend.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -43,10 +41,16 @@ public class OrderController extends BaseController<Order> {
         orderService.updateItem(order, product, quantity);
     }
 
-    @GetMapping("/checkout")
+//    @GetMapping("/checkout")
+//    @ResponseStatus(HttpStatus.ACCEPTED)
+//    public void checkOut(@RequestBody @PathVariable @Valid Order order, PaymentMethod paymentMethod){
+//        orderService.checkout(order,paymentMethod);
+//    }
+
+    @PostMapping("/checkout")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void checkOut(@RequestBody @PathVariable @Valid Order order, PaymentMethod paymentMethod) {
-        orderService.checkout(order, paymentMethod);
+    public void checkout(@RequestBody CheckoutRequest checkoutRequest) {
+        orderService.checkout(checkoutRequest);
     }
 
     @RequestMapping(value = "/orderHistory", method = RequestMethod.GET)
