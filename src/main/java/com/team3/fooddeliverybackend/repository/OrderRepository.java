@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Set;
 
 @Repository
@@ -17,7 +18,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query(value = "update Order o set o.payAmount=:cost where o.id = :id")
     void updateOrderCost(Long id, BigDecimal cost);
 
-    @Query(value = "SELECT * FROM ORDERS o WHERE o.orderitems", nativeQuery = true)
-    Set<Order> getOrdersByAccount(Account account);
+    @Query(value = "SELECT * FROM ORDERS o WHERE o.ACCOUNT_ID=:Id", nativeQuery = true)
+    List<Order> getOrdersById(Long Id);
 
 }
