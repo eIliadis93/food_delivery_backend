@@ -26,6 +26,7 @@ public class Order extends BaseModel {
     private Account account;
     @ToString.Exclude
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<OrderItem> orderItems;
     @Column(precision = 10, scale = 2, nullable = false)
     private BigDecimal payAmount;
