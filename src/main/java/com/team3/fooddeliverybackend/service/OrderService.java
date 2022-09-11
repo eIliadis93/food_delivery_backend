@@ -6,6 +6,7 @@ import com.team3.fooddeliverybackend.domain.Order;
 import com.team3.fooddeliverybackend.domain.PaymentMethod;
 import com.team3.fooddeliverybackend.domain.Product;
 
+import java.util.List;
 import java.util.Set;
 
 public interface OrderService extends BaseService<Order> {
@@ -18,6 +19,6 @@ public interface OrderService extends BaseService<Order> {
     void removeItem(Order order, Product product);
 
     Order checkout(Order order, PaymentMethod paymentMethod);
-    Set<Order> getOrdersByAccount(Account account);
+    List<Order> getOrdersById(Long Id);
 
 }
