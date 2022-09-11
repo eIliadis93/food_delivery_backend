@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -49,8 +50,8 @@ public class OrderController extends BaseController<Order> {
     }
 
     @RequestMapping(value = "/orderHistory", method = RequestMethod.GET)
-    public Set<Order> getOrderHistory(Account account) {
-        return orderService.getOrdersByAccount(account);
+    public List<Order> getOrders(@RequestParam Long Id) {
+        return orderService.getOrdersById(Id);
     }
 
 
