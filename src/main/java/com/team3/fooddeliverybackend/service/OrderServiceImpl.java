@@ -1,7 +1,12 @@
 package com.team3.fooddeliverybackend.service;
 
 import com.team3.fooddeliverybackend.domain.*;
+import com.team3.fooddeliverybackend.domain.transfer.CheckoutRequest;
+import com.team3.fooddeliverybackend.domain.transfer.OrderItemDto;
+import com.team3.fooddeliverybackend.repository.AccountRepository;
 import com.team3.fooddeliverybackend.repository.OrderRepository;
+import com.team3.fooddeliverybackend.repository.ProductRepository;
+import com.team3.fooddeliverybackend.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -13,11 +18,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderService {
-
     private final OrderRepository orderRepository;
 
     @Override
@@ -27,8 +32,13 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 
     @Override
     public Order initiateOrder(Account account) {
-        return Order.builder().account(account).orderItems(new HashSet<>()).submitDate(new Date()).build();
+        return Order.builder().account(account).orderItems(new ArrayList<>()).submitDate(new Date()).build();
     }
+	private final AccountRepository accountRepository;
+
+	private final StoreRepository storeRepository;
+
+	private final ProductRepository productRepository;
 
     @Override
     public void addItem(Order order, Product product, int quantity) {
@@ -75,17 +85,33 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
         logger.debug("Product[{}] removed from Order[{}]", product, order);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
-    public Order checkout(Order order, PaymentMethod paymentMethod) {
-        if (!validate(order)) {
-            logger.warn("Order should have customer, order items, and payment type defined before being able to " +
-                    "checkout the order.");
-            return null;
-        }
+	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
+	public Order checkout(CheckoutRequest checkoutRequest) {
+		Order order = new Order();
+		List<OrderItem> orderItems = new ArrayList<>();
 
-        order.setPaymentMethod(paymentMethod);
-        order.setSubmitDate(new Date());
-        order.setPayAmount(givePayAmount(order));
+		Account account = accountRepository.findById(checkoutRequest.getAccountId()).get();
+		Store store = storeRepository.findById(checkoutRequest.getStoreId()).get();
+
+		BigDecimal totalOrderAmount = new BigDecimal(0);
+		for (OrderItemDto oi : checkoutRequest.getOrderItems())
+		{
+			OrderItem orderItem = new OrderItem();
+			Product product = productRepository.findById(oi.getProductId()).get();
+			orderItem.setPrice(product.getPrice());
+			orderItem.setQuantity(oi.getQuantity());
+			orderItem.setProduct(product);
+			BigDecimal totalOrderItemAmount = product.getPrice().multiply(new BigDecimal(oi.getQuantity()));
+			totalOrderAmount = totalOrderAmount.add(totalOrderItemAmount);
+			orderItems.add(orderItem);
+		}
+		order.setOrderItems(orderItems);
+		order.setPayAmount(totalOrderAmount);
+
+		order.setPaymentMethod(checkoutRequest.getPaymentMethod());
+		order.setAccount(account);
+		order.setStore(store);
+		order.setSubmitDate(new Date()); //Date.from(Instant.now())
 
         return create(order);
     }
@@ -107,8 +133,9 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
     }
 
     private OrderItem newOrderItem(Order order, Product product, int quantity) {
-        return OrderItem.builder().product(product).order(order).quantity(quantity).price(product.getPrice()).build();
+        return OrderItem.builder().product(product).quantity(quantity).price(product.getPrice()).build();
     }
+
 
     private BigDecimal givePayAmount(Order order) {
         //@formatter:off
