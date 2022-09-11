@@ -21,7 +21,7 @@ public class Store extends BaseModel {
 
     @Column(length = 30, nullable = false)
     private String name;
-    @Column(length = 30, nullable = false)
+    @Column(length = 30, nullable = false, unique = true)
     @NotNull
     private String email;
     @Column(length = 10)

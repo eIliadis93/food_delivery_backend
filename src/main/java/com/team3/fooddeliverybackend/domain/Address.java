@@ -27,7 +27,7 @@ public class Address extends BaseModel {
     @NotNull
     private String town;
     @ManyToOne(fetch = FetchType.LAZY)
-    @NotNull
+//    @NotNull
     @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ID")
     @JsonIgnore
     private Account account;

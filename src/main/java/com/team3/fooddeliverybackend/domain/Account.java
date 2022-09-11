@@ -1,6 +1,5 @@
 package com.team3.fooddeliverybackend.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,12 +15,12 @@ import java.util.Set;
 @Entity
 @Table(name = "ACCOUNTS")
 @SequenceGenerator(name = "idGenerator", sequenceName = "ACCOUNTS_SEQ", initialValue = 1, allocationSize = 1)
-public class Account extends BaseModel {
+public class Account extends BaseModel{
     @Column(length = 50, nullable = false, unique = true)
     @NotNull
     private String email;
     @NotNull
-    @Column(length = 25, nullable = false)
+    @Column(length = 20, nullable = false)
     private String password;
     @NotNull
     @Column(length = 20, nullable = false)
@@ -31,12 +30,11 @@ public class Account extends BaseModel {
     private String lastname;
     private Integer age;
     @ToString.Exclude
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JsonIgnore
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL , orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<Address> addresses;
     @ToString.Exclude
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JsonIgnore
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    //@NotNull
     private Set<CreditCard> creditCards;
 
 }
