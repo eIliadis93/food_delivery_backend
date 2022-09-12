@@ -6,11 +6,13 @@ import com.team3.fooddeliverybackend.service.BaseService;
 import com.team3.fooddeliverybackend.service.StoreService;
 import com.team3.fooddeliverybackend.transfer.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,13 +36,23 @@ public class StoreController extends BaseController<Store> {
         return ResponseEntity.ok(ApiResponse.<Store>builder().data(byName).build());
     }
 
-    @GetMapping(params = "storeCategory")
+    @GetMapping( "/storeCategory")
     public ResponseEntity<ApiResponse<List<Store>>> findByStoreCategory(@RequestParam(value = "storeCategory") StoreCategory storeCategory) {
         final List<Store> byCategory = storeService.findByStoreCategory(storeCategory);
         if (byCategory == null) {
             throw new NoSuchElementException("Store not found (by category)");
         }
         return ResponseEntity.ok(ApiResponse.<List<Store>>builder().data(byCategory).build());
+    }
+
+    @GetMapping("/popular")
+    public List<Store> findMostPopularStoresByCategory(@RequestParam("storeCategory") StoreCategory storeCategory){
+        return storeService.findMostPopularStoresByCategory(storeCategory);
+    }
+
+    @GetMapping("/popularGeneral")
+    public List<Store> findMostPopularStores(){
+        return storeService.findMostPopularStores();
     }
 
 }
