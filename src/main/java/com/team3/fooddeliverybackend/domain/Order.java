@@ -28,6 +28,7 @@ public class Order extends BaseModel {
     @ToString.Exclude
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<OrderItem> orderItems;
 
     @Column(precision = 10, scale = 2, nullable = false)
