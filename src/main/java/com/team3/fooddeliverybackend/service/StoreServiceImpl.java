@@ -3,18 +3,21 @@ package com.team3.fooddeliverybackend.service;
 import com.team3.fooddeliverybackend.domain.Product;
 import com.team3.fooddeliverybackend.domain.Store;
 import com.team3.fooddeliverybackend.domain.StoreCategory;
+import com.team3.fooddeliverybackend.repository.OrderRepository;
 import com.team3.fooddeliverybackend.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreService {
 
     private final StoreRepository storeRepository;
+
 
     @Override
     public JpaRepository<Store, Long> getRepository() {
@@ -45,6 +48,16 @@ public class StoreServiceImpl extends BaseServiceImpl<Store> implements StoreSer
     public void removeProducts(Store store, Product product) {
         store.getProducts().remove(product);
         logger.info("Product {} removed from Store {}.", product, store);
+    }
+
+    @Override
+    public List<Store> findMostPopularStoresByCategory(StoreCategory storeCategory) {
+        return storeRepository.findMostPopularStoresByCategory(storeCategory.toString());
+    }
+
+    @Override
+    public List<Store> findMostPopularStores() {
+        return storeRepository.findMostPopularStores();
     }
 
 
