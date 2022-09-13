@@ -44,4 +44,9 @@ public class ProductController extends BaseController<Product> {
         }
         return ResponseEntity.ok(ApiResponse.<List<Product>>builder().data(byStore).build());
     }
+
+    @GetMapping(params = "findTop10Products")
+    public List<Product> findTop10Products() {
+        return productService.findTop10Products();
+    }
 }

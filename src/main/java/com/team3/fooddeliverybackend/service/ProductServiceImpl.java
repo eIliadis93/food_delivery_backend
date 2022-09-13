@@ -30,5 +30,10 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
         return productRepository.findProductByStore(store);
     }
 
+    @Override
+    public List<Product> findTop10Products() {
+        return productRepository.findTop10Products();
+    }
+
 
 }
