@@ -1,9 +1,7 @@
 package com.team3.fooddeliverybackend.domain.transfer;
 
-import com.team3.fooddeliverybackend.domain.OrderItem;
 import com.team3.fooddeliverybackend.domain.PaymentMethod;
 import lombok.*;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Set;
 
