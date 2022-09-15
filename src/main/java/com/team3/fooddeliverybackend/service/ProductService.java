@@ -10,4 +10,6 @@ public interface ProductService extends BaseService<Product> {
     Product findBySerial(String serial);
 
     List<Product> findProductByStore(@NotNull Store store);
+
+    List<Product> findTop10Products();
 }

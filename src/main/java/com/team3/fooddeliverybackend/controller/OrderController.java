@@ -1,16 +1,16 @@
 package com.team3.fooddeliverybackend.controller;
 
-import com.team3.fooddeliverybackend.domain.*;
+import com.team3.fooddeliverybackend.domain.Order;
 import com.team3.fooddeliverybackend.domain.transfer.CheckoutRequest;
 import com.team3.fooddeliverybackend.service.BaseService;
 import com.team3.fooddeliverybackend.service.OrderService;
+import com.team3.fooddeliverybackend.transfer.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,30 +23,6 @@ public class OrderController extends BaseController<Order> {
         return orderService;
     }
 
-    @PostMapping("{order}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addItem(@RequestBody @PathVariable @Valid Order order, Product product, int quantity) {
-        orderService.addItem(order, product, quantity);
-    }
-
-    @DeleteMapping("{order}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void removeItem(@RequestBody @PathVariable @Valid Order order, Product product) {
-        orderService.removeItem(order, product);
-    }
-
-    @PutMapping("{order}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateItem(@RequestBody @PathVariable @Valid Order order, Product product, int quantity) {
-        orderService.updateItem(order, product, quantity);
-    }
-
-//    @GetMapping("/checkout")
-//    @ResponseStatus(HttpStatus.ACCEPTED)
-//    public void checkOut(@RequestBody @PathVariable @Valid Order order, PaymentMethod paymentMethod){
-//        orderService.checkout(order,paymentMethod);
-//    }
-
     @PostMapping("/checkout")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void checkout(@RequestBody CheckoutRequest checkoutRequest) {
@@ -54,8 +30,9 @@ public class OrderController extends BaseController<Order> {
     }
 
     @RequestMapping(value = "/orderHistory", method = RequestMethod.GET)
-    public List<Order> getOrders(@RequestParam Long Id) {
-        return orderService.getOrdersById(Id);
+    public ResponseEntity<ApiResponse<List<Order>>> getOrders(@RequestParam Long Id) {
+        final List<Order> orderHistory = orderService.getOrdersById(Id);
+        return ResponseEntity.ok(ApiResponse.<List<Order>>builder().data(orderHistory).build());
     }
 
 
