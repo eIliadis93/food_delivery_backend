@@ -46,13 +46,21 @@ public class StoreController extends BaseController<Store> {
     }
 
     @GetMapping("/popular")
-    public List<Store> findMostPopularStoresByCategory(@RequestParam("storeCategory") StoreCategory storeCategory){
-        return storeService.findMostPopularStoresByCategory(storeCategory);
+    public ResponseEntity<ApiResponse<List<Store>>> findMostPopularStoresByCategory(@RequestParam("storeCategory") StoreCategory storeCategory){
+        final List<Store>  findMostPopularbyCategory= storeService.findMostPopularStoresByCategory(storeCategory);
+        if(findMostPopularbyCategory==null){
+            throw new NoSuchElementException("Most Popular Stores not found (by category)");
+        }
+        return ResponseEntity.ok(ApiResponse.<List<Store>>builder().data(findMostPopularbyCategory).build());
     }
 
     @GetMapping("/popularGeneral")
-    public List<Store> findMostPopularStores(){
-        return storeService.findMostPopularStores();
+    public ResponseEntity<ApiResponse<List<Store>>> findMostPopularStores(){
+        final List<Store> mostPopularStores=storeService.findMostPopularStores();
+        if(mostPopularStores==null){
+            throw new NoSuchElementException("Most Popular Stores not found ");
+        }
+        return ResponseEntity.ok(ApiResponse.<List<Store>>builder().data(mostPopularStores).build());
     }
 
 }
