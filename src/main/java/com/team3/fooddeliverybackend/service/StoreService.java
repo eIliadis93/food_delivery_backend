@@ -4,9 +4,7 @@ import com.team3.fooddeliverybackend.domain.Product;
 import com.team3.fooddeliverybackend.domain.Store;
 import com.team3.fooddeliverybackend.domain.StoreCategory;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.Set;
 
 public interface StoreService extends BaseService<Store> {
 

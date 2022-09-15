@@ -3,14 +3,12 @@ package com.team3.fooddeliverybackend.service;
 import com.team3.fooddeliverybackend.domain.Product;
 import com.team3.fooddeliverybackend.domain.Store;
 import com.team3.fooddeliverybackend.domain.StoreCategory;
-import com.team3.fooddeliverybackend.repository.OrderRepository;
 import com.team3.fooddeliverybackend.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
