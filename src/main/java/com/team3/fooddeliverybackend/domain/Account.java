@@ -1,5 +1,6 @@
 package com.team3.fooddeliverybackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,10 +32,12 @@ public class Account extends BaseModel{
     private Integer age;
     @ToString.Exclude
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL , orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Address> addresses;
     @ToString.Exclude
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     //@NotNull
+    @JsonIgnore
     private Set<CreditCard> creditCards;
 
 }
