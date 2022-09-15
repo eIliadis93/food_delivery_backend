@@ -46,7 +46,11 @@ public class ProductController extends BaseController<Product> {
     }
 
     @GetMapping(params = "findTop10Products")
-    public List<Product> findTop10Products() {
-        return productService.findTop10Products();
+    public ResponseEntity<ApiResponse<List<Product>>> findTop10Products() {
+        final List<Product> top10products = productService.findTop10Products();
+        if (top10products == null) {
+            throw new NoSuchElementException("Products not found (by 10 popular)");
+        }
+        return ResponseEntity.ok(ApiResponse.<List<Product>>builder().data(top10products).build());
     }
 }

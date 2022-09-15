@@ -15,10 +15,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -34,11 +33,12 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
     public Order initiateOrder(Account account) {
         return Order.builder().account(account).orderItems(new ArrayList<>()).submitDate(new Date()).build();
     }
-	private final AccountRepository accountRepository;
 
-	private final StoreRepository storeRepository;
+    private final AccountRepository accountRepository;
 
-	private final ProductRepository productRepository;
+    private final StoreRepository storeRepository;
+
+    private final ProductRepository productRepository;
 
     @Override
     public void addItem(Order order, Product product, int quantity) {
@@ -85,33 +85,32 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
         logger.debug("Product[{}] removed from Order[{}]", product, order);
     }
 
-	@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
-	public Order checkout(CheckoutRequest checkoutRequest) {
-		Order order = new Order();
-		List<OrderItem> orderItems = new ArrayList<>();
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
+    public Order checkout(CheckoutRequest checkoutRequest) {
+        Order order = new Order();
+        List<OrderItem> orderItems = new ArrayList<>();
 
-		Account account = accountRepository.findById(checkoutRequest.getAccountId()).get();
-		Store store = storeRepository.findById(checkoutRequest.getStoreId()).get();
+        Account account = accountRepository.findById(checkoutRequest.getAccountId()).get();
+        Store store = storeRepository.findById(checkoutRequest.getStoreId()).get();
 
-		BigDecimal totalOrderAmount = new BigDecimal(0);
-		for (OrderItemDto oi : checkoutRequest.getOrderItems())
-		{
-			OrderItem orderItem = new OrderItem();
-			Product product = productRepository.findById(oi.getProductId()).get();
-			orderItem.setPrice(product.getPrice());
-			orderItem.setQuantity(oi.getQuantity());
-			orderItem.setProduct(product);
-			BigDecimal totalOrderItemAmount = product.getPrice().multiply(new BigDecimal(oi.getQuantity()));
-			totalOrderAmount = totalOrderAmount.add(totalOrderItemAmount);
-			orderItems.add(orderItem);
-		}
-		order.setOrderItems(orderItems);
-		order.setPayAmount(totalOrderAmount);
+        BigDecimal totalOrderAmount = new BigDecimal(0);
+        for (OrderItemDto oi : checkoutRequest.getOrderItems()) {
+            OrderItem orderItem = new OrderItem();
+            Product product = productRepository.findById(oi.getProductId()).get();
+            orderItem.setPrice(product.getPrice());
+            orderItem.setQuantity(oi.getQuantity());
+            orderItem.setProduct(product);
+            BigDecimal totalOrderItemAmount = product.getPrice().multiply(new BigDecimal(oi.getQuantity()));
+            totalOrderAmount = totalOrderAmount.add(totalOrderItemAmount);
+            orderItems.add(orderItem);
+        }
+        order.setOrderItems(orderItems);
+        order.setPayAmount(totalOrderAmount);
 
-		order.setPaymentMethod(checkoutRequest.getPaymentMethod());
-		order.setAccount(account);
-		order.setStore(store);
-		order.setSubmitDate(new Date()); //Date.from(Instant.now())
+        order.setPaymentMethod(checkoutRequest.getPaymentMethod());
+        order.setAccount(account);
+        order.setStore(store);
+        order.setSubmitDate(new Date()); //Date.from(Instant.now())
 
         return create(order);
     }
