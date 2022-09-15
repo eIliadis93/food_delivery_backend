@@ -6,13 +6,11 @@ import com.team3.fooddeliverybackend.service.BaseService;
 import com.team3.fooddeliverybackend.service.StoreService;
 import com.team3.fooddeliverybackend.transfer.ApiResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
