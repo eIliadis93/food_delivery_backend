@@ -41,7 +41,7 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
         Store store10 = storeService.create(Store.builder().email("store10@gmail.com").name("Branch").storeCategory(StoreCategory.GROCERY).location("Athens").phoneNumber(1233367891).imgURL("assets/storesImg/branch.png").build());
 
 
-        Product product1 = productService.create(Product.builder().name("Double Bacon Burger").serial("asdasd").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.FOOD).store(store1).build());
+        Product product1 = productService.create(Product.builder().name("Pizza Special").serial("asdasd").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.FOOD).store(store1).build());
         Product product2 = productService.create(Product.builder().name("Coca Cola").serial("asdasdasd").price(BigDecimal.valueOf(1.50)).productCategory(ProductCategory.DRINK).store(store2).build());
         Product product3 = productService.create(Product.builder().name("Freddo Espresso").serial("asdasdasdasd").price(BigDecimal.valueOf(2.30)).productCategory(ProductCategory.COFFEE).store(store3).build());
         Product product4 = productService.create(Product.builder().name("Black Forest").serial("qweqwe").price(BigDecimal.valueOf(14.90)).productCategory(ProductCategory.DESERT).store(store4).build());
@@ -51,10 +51,8 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
         Product product8 = productService.create(Product.builder().name("Ice Cream").serial("asdasda95d").price(BigDecimal.valueOf(2.80)).productCategory(ProductCategory.DESERT).store(store8).build());
         Product product9 = productService.create(Product.builder().name("Margarita").serial("asdasda963d").price(BigDecimal.valueOf(8)).productCategory(ProductCategory.DRINK).store(store9).build());
         Product product10 = productService.create(Product.builder().name("Spaghetti").serial("asdasda4521sd").price(BigDecimal.valueOf(6.30)).productCategory(ProductCategory.FOOD).store(store10).build());
-        Product product11 = productService.create(Product.builder().name("Chicken Nuggets").serial("asdasdfdew3r3").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.FOOD).store(store1).build());
-        Product product12 = productService.create(Product.builder().name("Cheese Burger").serial("asdasdfdew3r45533").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.FOOD).store(store1).build());
-        Product product13 = productService.create(Product.builder().name("Coca Cola").serial("sdas54643d0asd").price(BigDecimal.valueOf(1.80)).productCategory(ProductCategory.DRINK).store(store1).build());
-        Product product14 = productService.create(Product.builder().name("Caesar Salad").serial("asdas54643dasd").price(BigDecimal.valueOf(7.20)).productCategory(ProductCategory.DRINK).store(store1).build());
+        Product product11 = productService.create(Product.builder().name("Pizza Bacon").serial("asdasdfdew3r3").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.FOOD).store(store1).build());
+        Product product12 = productService.create(Product.builder().name("Napoliten Spaghetti").serial("asdasdfdew3r45533").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.FOOD).store(store1).build());
 
 
         Account account1 = Account.builder().firstname("Spiros").lastname("Christodoulou").age(30).email("s.christodoulou@pmmretail.com").password("8frhev9").build();
@@ -123,7 +121,67 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
         account5 = accountService.create(account5);
 
 
-
+////        Address address1 = Address.builder().streetName("Athens").streetNumber(78).town("Attiki").account(account1).build();
+////        logger.info("Created Address {}.", address1);
+//        Address address2 = addressService.create(Address.builder().streetName("Peristeriou").streetNumber(15).town("Attiki").account(account2).build());
+//        logger.info("Created Address {}.", address2);
+//        Address address3 = addressService.create(Address.builder().streetName("Agiou Ioannou").streetNumber(32).town("Philadelfia").account(account3).build());
+//        logger.info("Created Address {}.", address3);
+//        Address address4 = addressService.create(Address.builder().streetName("Koloktroni").streetNumber(150).town("Petroupoli").account(account4).build());
+//        logger.info("Created Address {}.", address4);
+//        Address address5 = addressService.create(Address.builder().streetName("Thrakis").streetNumber(7).town("Chalandri").account(account5).build());
+//        logger.info("Created Address {}.", address5);
+//        Address address6 = addressService.create(Address.builder().streetName("Athinon").streetNumber(3).town("Attiki").account(account6).build());
+//        logger.info("Created Address {}.", address6);
+//        Address address7 = addressService.create(Address.builder().streetName("Liosion").streetNumber(1).town("Attiki").account(account7).build());
+//        logger.info("Created Address {}.", address7);
+//        Address address8 = addressService.create(Address.builder().streetName("Thrakomakedonon").streetNumber(65).town("Patisia").account(account8).build());
+//        logger.info("Created Address {}.", address8);
+//        Address address9 = addressService.create(Address.builder().streetName("Agion Theodoron").streetNumber(15).town("Attiki").account(account9).build());
+//        logger.info("Created Address {}.", address9);
+//        Address address10 = addressService.create(Address.builder().streetName("Ermou").streetNumber(36).town("Monastiraki").account(account10).build());
+//        logger.info("Created Address {}.", address10);
+//
+////        CreditCard creditCard1 = creditCardService.create(CreditCard.builder().account(account1).cardNumber(Long.valueOf("1234567899876543")).expirationDate("5/24").holderName("Holder1").threeDigitCode(623).build());
+////        logger.info("Created credit card {}.", creditCard1);
+//        CreditCard creditCard2 = creditCardService.create(CreditCard.builder().account(account2).cardNumber(Long.valueOf("12368494952646543")).expirationDate("9/24").holderName("Holder2").threeDigitCode(123).build());
+//        logger.info("Created credit card {}.", creditCard2);
+//        CreditCard creditCard3 = creditCardService.create(CreditCard.builder().account(account3).cardNumber(Long.valueOf("9999967899876543")).expirationDate("5/24").holderName("Holder3").threeDigitCode(198).build());
+//        logger.info("Created credit card {}.", creditCard3);
+//        CreditCard creditCard4 = creditCardService.create(CreditCard.builder().account(account4).cardNumber(Long.valueOf("1234567444476543")).expirationDate("3/24").holderName("Holder4").threeDigitCode(523).build());
+//        logger.info("Created credit card {}.", creditCard4);
+//        CreditCard creditCard5 = creditCardService.create(CreditCard.builder().account(account5).cardNumber(Long.valueOf("1234333899876543")).expirationDate("2/24").holderName("Holder5").threeDigitCode(113).build());
+//        logger.info("Created credit card {}.", creditCard5);
+//        CreditCard creditCard6 = creditCardService.create(CreditCard.builder().account(account6).cardNumber(Long.valueOf("1234567111176543")).expirationDate("1/24").holderName("Holder6").threeDigitCode(053).build());
+//        logger.info("Created credit card {}.", creditCard6);
+//        CreditCard creditCard7 = creditCardService.create(CreditCard.builder().account(account7).cardNumber(Long.valueOf("1234500000006543")).expirationDate("11/24").holderName("Holder7").threeDigitCode(303).build());
+//        logger.info("Created credit card {}.", creditCard7);
+//        CreditCard creditCard8 = creditCardService.create(CreditCard.builder().account(account8).cardNumber(Long.valueOf("1234666666666643")).expirationDate("12/24").holderName("Holder8").threeDigitCode(993).build());
+//        logger.info("Created credit card {}.", creditCard8);
+//        CreditCard creditCard9 = creditCardService.create(CreditCard.builder().account(account9).cardNumber(Long.valueOf("1234544444444543")).expirationDate("10/24").holderName("Holder9").threeDigitCode(983).build());
+//        logger.info("Created credit card {}.", creditCard9);
+//        CreditCard creditCard10 = creditCardService.create(CreditCard.builder().account(account10).cardNumber(Long.valueOf("1234522222222243")).expirationDate("6/24").holderName("Holder10").threeDigitCode(723).build());
+//        logger.info("Created credit card {}.", creditCard10);
+//
+////        storeService.addProducts(store1, product1);
+//
+//        Order order1 = orderService.initiateOrder(account1);
+//        Order order2 = orderService.initiateOrder(account2);
+//        Order order3 = orderService.initiateOrder(account3);
+//        Order order4 = orderService.initiateOrder(account4);
+//        Order order5 = orderService.initiateOrder(account5);
+//        Order order6 = orderService.initiateOrder(account6);
+//        Order order7 = orderService.initiateOrder(account7);
+//        Order order8 = orderService.initiateOrder(account8);
+//        Order order9 = orderService.initiateOrder(account9);
+//        Order order10 = orderService.initiateOrder(account10);
+//
+//        Order order11 = orderService.create(Order.builder().account(account1).payAmount(BigDecimal.valueOf(15)).paymentMethod(PaymentMethod.CREDITCARD)
+//                .store(store1).submitDate(Date.valueOf(LocalDate.now())).build());
+//        Order order12 = orderService.create(Order.builder().account(account2).payAmount(BigDecimal.valueOf(50)).paymentMethod(PaymentMethod.CASH)
+//                .store(store2).submitDate(Date.valueOf(LocalDate.now())).build());
+//        Order order13 = orderService.create(Order.builder().account(account5).payAmount(BigDecimal.valueOf(151)).paymentMethod(PaymentMethod.CREDITCARD)
+//                .store(store9).submitDate(Date.valueOf(LocalDate.now())).build());
 
     }
 }
