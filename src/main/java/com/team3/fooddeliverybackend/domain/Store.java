@@ -1,6 +1,7 @@
 package com.team3.fooddeliverybackend.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -50,7 +51,7 @@ public class Store extends BaseModel {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonManagedReference("orders")
+    @JsonBackReference("orders")
     private Set<Order> orders;
 
 

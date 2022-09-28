@@ -23,14 +23,14 @@ import java.util.List;
 
 @SequenceGenerator(name = "idGenerator", sequenceName = "ORDERS_SEQ", initialValue = 1, allocationSize = 1)
 public class Order extends BaseModel {
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @NotNull
     @JsonIgnore
     private Account account;
-    @ToString.Exclude
 
-    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonManagedReference("orderItems")
+    @ToString.Exclude
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<OrderItem> orderItems;
 
     @Column(precision = 10, scale = 2, nullable = false)
@@ -39,7 +39,7 @@ public class Order extends BaseModel {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @NotNull
-    @JsonBackReference("orders")
+    @JsonManagedReference("orders")
     private Store store;
 
     @Enumerated(EnumType.STRING)

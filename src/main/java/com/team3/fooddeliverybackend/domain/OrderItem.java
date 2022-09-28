@@ -23,12 +23,6 @@ public class OrderItem extends BaseModel {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Product product;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @NotNull
-    @JsonBackReference("orderItems")
-    @ToString.Exclude
-    private Order order;
-
     @Column(nullable = false)
     @NotNull
     private Integer quantity;
