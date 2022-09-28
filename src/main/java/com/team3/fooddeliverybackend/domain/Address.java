@@ -1,5 +1,6 @@
 package com.team3.fooddeliverybackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -20,15 +21,18 @@ public class Address extends BaseModel {
     @Column(length = 50, nullable = false)
     @NotNull
     private String streetName;
+
     @Column(length = 5, nullable = false)
     @NotNull
     private int streetNumber;
+
     @Column(length = 20, nullable = false)
     @NotNull
     private String town;
+
     @ManyToOne(fetch = FetchType.LAZY)
-//    @NotNull
+    @NotNull
     @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ID")
-    @JsonIgnore
+    @JsonBackReference("addresses")
     private Account account;
 }

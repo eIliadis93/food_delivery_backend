@@ -1,5 +1,7 @@
 package com.team3.fooddeliverybackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,10 +23,11 @@ public class OrderItem extends BaseModel {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Product product;
 
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @NotNull
-//    @JsonIgnore
-//    private Order order;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @NotNull
+    @JsonBackReference("orderItems")
+    @ToString.Exclude
+    private Order order;
 
     @Column(nullable = false)
     @NotNull

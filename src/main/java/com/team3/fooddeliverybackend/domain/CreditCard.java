@@ -1,6 +1,7 @@
 package com.team3.fooddeliverybackend.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -32,6 +33,6 @@ public class CreditCard extends BaseModel {
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ID")
-    @JsonIgnore
+    @JsonBackReference("creditCards")
     private Account account;
 }

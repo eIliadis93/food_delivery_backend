@@ -1,7 +1,9 @@
 package com.team3.fooddeliverybackend.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,20 +29,24 @@ public class Order extends BaseModel {
     private Account account;
     @ToString.Exclude
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonIgnore
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonManagedReference("orderItems")
     private List<OrderItem> orderItems;
 
     @Column(precision = 10, scale = 2, nullable = false)
+    @NotNull
     private BigDecimal payAmount;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @NotNull
-    @JsonIgnore
+    @JsonBackReference("orders")
     private Store store;
+
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
     @NotNull
     private PaymentMethod paymentMethod;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date submitDate;

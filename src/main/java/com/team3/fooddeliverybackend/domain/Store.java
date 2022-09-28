@@ -2,6 +2,7 @@ package com.team3.fooddeliverybackend.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,28 +22,35 @@ public class Store extends BaseModel {
 
     @Column(length = 30, nullable = false)
     private String name;
+
     @Column(length = 30, nullable = false, unique = true)
     @NotNull
     private String email;
+
     @Column(length = 10)
     @NotNull
     private int phoneNumber;
+
     @Column(length = 30, nullable = false)
     @NotNull
     private String location;
+
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
     @NotNull
     private StoreCategory storeCategory;
+
     @Column
     private String imgURL;
+
+    @JsonManagedReference("products")
     @ToString.Exclude
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonIgnore
     private Set<Product> products;
+
     @ToString.Exclude
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JsonManagedReference("orders")
     private Set<Order> orders;
 
 

@@ -1,5 +1,6 @@
 package com.team3.fooddeliverybackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -20,20 +21,25 @@ public class Product extends BaseModel {
     @Column(length = 50, nullable = false)
     @NotNull
     private String name;
+
     @Column(length = 30, nullable = false, unique = true)
     @NotNull
     private String serial;
+
     @Column(precision = 10, scale = 2, nullable = true)
     @NotNull
     private BigDecimal price;
+
     @Column
     private String imgURL;
+
     @Enumerated(EnumType.STRING)
     @Column(length = 15, nullable = false)
     @NotNull
     private ProductCategory productCategory;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @NotNull
-    @JsonIgnore
+    @JsonBackReference("products")
     private Store store;
 }
