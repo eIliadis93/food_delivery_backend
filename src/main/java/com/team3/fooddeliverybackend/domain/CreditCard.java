@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -20,6 +21,7 @@ import javax.validation.constraints.NotNull;
 public class CreditCard extends BaseModel {
     @Column(length = 16, nullable = false, unique = true)
     @NotNull
+    @Min(16)
     private Long cardNumber;
     @Column(length = 30, nullable = false)
     @NotNull
@@ -29,10 +31,10 @@ public class CreditCard extends BaseModel {
     private String expirationDate;
     @Column(length = 3, nullable = false)
     @NotNull
+    @Min(3)
     private int threeDigitCode;
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ID")
-    @JsonBackReference("creditCards")
     private Account account;
 }

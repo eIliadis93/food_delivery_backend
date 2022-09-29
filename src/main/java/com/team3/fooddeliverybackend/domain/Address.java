@@ -33,6 +33,5 @@ public class Address extends BaseModel {
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ID")
-    @JsonBackReference("addresses")
     private Account account;
 }

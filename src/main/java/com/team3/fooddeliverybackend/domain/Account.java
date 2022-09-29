@@ -1,5 +1,6 @@
 package com.team3.fooddeliverybackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -38,12 +39,12 @@ public class Account extends BaseModel{
 
     @ToString.Exclude
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL , orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonManagedReference("addresses")
+    @JsonIgnore
     private Set<Address> addresses;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonManagedReference("creditCards")
+    @JsonIgnore
     private Set<CreditCard> creditCards;
 
 }
