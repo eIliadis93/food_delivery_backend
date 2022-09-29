@@ -44,14 +44,12 @@ public class Store extends BaseModel {
     @Column
     private String imgURL;
 
-    @JsonManagedReference("products")
     @ToString.Exclude
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<Product> products;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonBackReference("orders")
     private Set<Order> orders;
 
 

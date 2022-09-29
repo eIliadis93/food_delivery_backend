@@ -12,10 +12,6 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    @Modifying
-    @Query(value = "update Order o set o.payAmount=:cost where o.id = :id")
-    void updateOrderCost(Long id, BigDecimal cost);
-
     @Query(value = "SELECT * FROM ORDERS o WHERE o.ACCOUNT_ID=:Id", nativeQuery = true)
     List<Order> getOrdersById(Long Id);
 

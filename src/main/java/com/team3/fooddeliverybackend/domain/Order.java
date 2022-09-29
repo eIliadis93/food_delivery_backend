@@ -30,7 +30,7 @@ public class Order extends BaseModel {
     private Account account;
 
     @ToString.Exclude
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<OrderItem> orderItems;
 
     @Column(precision = 10, scale = 2, nullable = false)
@@ -39,7 +39,7 @@ public class Order extends BaseModel {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @NotNull
-    @JsonManagedReference("orders")
+    @JsonIgnore
     private Store store;
 
     @Enumerated(EnumType.STRING)

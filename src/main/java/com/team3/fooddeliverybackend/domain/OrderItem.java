@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 public class OrderItem extends BaseModel {
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private Product product;
 
     @Column(nullable = false)

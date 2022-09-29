@@ -26,7 +26,7 @@ public class Product extends BaseModel {
     @NotNull
     private String serial;
 
-    @Column(precision = 10, scale = 2, nullable = true)
+    @Column(precision = 10, scale = 2, nullable = false)
     @NotNull
     private BigDecimal price;
 
@@ -38,8 +38,8 @@ public class Product extends BaseModel {
     @NotNull
     private ProductCategory productCategory;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @NotNull
-    @JsonBackReference("products")
+    @JsonIgnore
     private Store store;
 }
