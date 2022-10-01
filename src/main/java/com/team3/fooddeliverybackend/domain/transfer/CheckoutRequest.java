@@ -1,5 +1,6 @@
 package com.team3.fooddeliverybackend.domain.transfer;
 
+import com.team3.fooddeliverybackend.domain.Address;
 import com.team3.fooddeliverybackend.domain.PaymentMethod;
 import lombok.*;
 

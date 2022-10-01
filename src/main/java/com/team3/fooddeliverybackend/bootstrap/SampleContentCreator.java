@@ -22,8 +22,6 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
     private final ProductService productService;
     private final AccountService accountService;
     private final StoreService storeService;
-    private final CreditCardService creditCardService;
-    private final AddressService addressService;
     private final OrderService orderService;
 
     @Override
@@ -56,68 +54,30 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
 
 
         Account account1 = Account.builder().firstname("Spiros").lastname("Christodoulou").age(30).email("s.christodoulou@pmmretail.com").password("8frhev9").build();
-        Address address1 = Address.builder().streetName("Athens").streetNumber(78).town("Pikermi").account(account1).build();
-        Set<Address> addrs1 = new HashSet<>();
-        addrs1.add(address1);
-        account1.setAddresses(addrs1);
-
-        CreditCard creditCard1 = CreditCard.builder().account(account1).cardNumber(Long.valueOf("1012111312141315")).expirationDate("5/24").holderName("Holder1").threeDigitCode(123).build();
+        CreditCard creditCard1 = CreditCard.builder().cardNumber(Long.valueOf("1012111312141315")).expirationDate("5/24").holderName("Holder1").threeDigitCode(123).build();
         Set<CreditCard> ccs1 = new HashSet<>();
-        ccs1.add(creditCard1);
-        account1.setCreditCards(ccs1);
-
         account1 = accountService.create(account1);
 
         Account account2 = Account.builder().firstname("Vagelis").lastname("Vrailas").age(22).email("e.vrailas@pmmretail.com").password("kv904n4f").build();
-        Address address2 = Address.builder().streetName("Peristeriou").streetNumber(78).town("Attiki").account(account2).build();
-        Set<Address> addrs2 = new HashSet<>();
-        addrs2.add(address2);
-        account2.setAddresses(addrs2);
-
-        CreditCard creditCard2 = CreditCard.builder().account(account2).cardNumber(Long.valueOf("1113121413151416")).expirationDate("5/24").holderName("Holder2").threeDigitCode(234).build();
-        Set<CreditCard> ccs2 = new HashSet<>();
-        ccs2.add(creditCard2);
-        account2.setCreditCards(ccs2);
-
+        CreditCard creditCard2 = CreditCard.builder().cardNumber(Long.valueOf("1113121413151416")).expirationDate("5/24").holderName("Holder2").threeDigitCode(234).build();
         account2 = accountService.create(account2);
 
         Account account3 = Account.builder().firstname("Vagelis").lastname("Iliadis").age(29).email("e.iliadis@pmmretail.com").password("84848A484frf").build();
-        Address address3 = Address.builder().streetName("Athens").streetNumber(78).town("Attiki").account(account3).build();
-        Set<Address> addrs3 = new HashSet<>();
-        addrs3.add(address3);
-        account3.setAddresses(addrs3);
+        Address address3 = Address.builder().streetName("Athens").streetNumber(78).town("Attiki").build();
 
-        CreditCard creditCard3 = CreditCard.builder().account(account3).cardNumber(Long.valueOf("1234567899876543")).expirationDate("5/24").holderName("Holder3").threeDigitCode(345).build();
+        CreditCard creditCard3 = CreditCard.builder().cardNumber(Long.valueOf("1234567899876543")).expirationDate("5/24").holderName("Holder3").threeDigitCode(345).build();
         Set<CreditCard> ccs3 = new HashSet<>();
-        ccs3.add(creditCard3);
-        account3.setCreditCards(ccs3);
 
         account3 = accountService.create(account3);
 
         Account account4 = Account.builder().firstname("John").lastname("Wick").age(45).email("j.wick@pmmretail.com").password("fs235g6").build();
-        Address address4 = Address.builder().streetName("NY").streetNumber(78).town("Manhattan").account(account4).build();
-        Set<Address> addrs4 = new HashSet<>();
-        addrs4.add(address4);
-        account4.setAddresses(addrs4);
-
-        CreditCard creditCard4 = CreditCard.builder().account(account4).cardNumber(Long.valueOf("1214131514161517")).expirationDate("5/24").holderName("Holder4").threeDigitCode(456).build();
+        CreditCard creditCard4 = CreditCard.builder().cardNumber(Long.valueOf("1214131514161517")).expirationDate("5/24").holderName("Holder4").threeDigitCode(456).build();
         Set<CreditCard> ccs4 = new HashSet<>();
-        ccs4.add(creditCard4);
-        account4.setCreditCards(ccs4);
-
         account4 = accountService.create(account4);
 
         Account account5 = Account.builder().firstname("Joey").lastname("Tribbiani").age(45).email("j.tribbiani@pmmretail.com").password("c68b54c9bn").build();
-        Address address5 = Address.builder().streetName("NY").streetNumber(78).town("Brooklyn").account(account5).build();
-        Set<Address> addrs5 = new HashSet<>();
-        addrs5.add(address5);
-        account5.setAddresses(addrs5);
-
-        CreditCard creditCard5 = CreditCard.builder().account(account5).cardNumber(Long.valueOf("1315141615171618")).expirationDate("5/24").holderName("Holder5").threeDigitCode(567).build();
-        Set<CreditCard> ccs5 = new HashSet<>();
-        ccs5.add(creditCard5);
-        account5.setCreditCards(ccs5);
-
+        Address address5 = Address.builder().streetName("NY").streetNumber(78).town("Brooklyn").build();
+        CreditCard creditCard5 = CreditCard.builder().cardNumber(Long.valueOf("1315141615171618")).expirationDate("5/24").holderName("Holder5").threeDigitCode(567).build();
         account5 = accountService.create(account5);
 
 

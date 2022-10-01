@@ -15,4 +15,5 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query(value = "SELECT * FROM ORDERS o WHERE o.ACCOUNT_ID=:Id", nativeQuery = true)
     List<Order> getOrdersById(Long Id);
 
+
 }

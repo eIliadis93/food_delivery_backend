@@ -8,6 +8,7 @@ import com.team3.fooddeliverybackend.repository.OrderRepository;
 import com.team3.fooddeliverybackend.repository.ProductRepository;
 import com.team3.fooddeliverybackend.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.support.AbstractBeanDefinitionReader;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -32,25 +33,27 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 
 
     private final AccountRepository accountRepository;
+    private final AccountService accountService;
 
     private final StoreRepository storeRepository;
 
     private final ProductRepository productRepository;
 
     @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
-    public Order checkout(CheckoutRequest checkoutRequest) {
+    public Order checkout(CheckoutRequest checkoutRequest, Long addressId) {
         Order order = new Order();
         Account account = accountRepository.findById(checkoutRequest.getAccountId()).get();
         Store store = storeRepository.findById(checkoutRequest.getStoreId()).get();
+        Address address = accountRepository.findAddress(addressId);
         order.setOrderItems(createOrderItemList(checkoutRequest));
         order.setPayAmount(givePayAmount(order));
         order.setPaymentMethod(checkoutRequest.getPaymentMethod());
         order.setAccount(account);
         order.setStore(store);
+        order.setDeliveryAddress(address);
         order.setSubmitDate(new Date()); //Date.from(Instant.now())
         return create(order);
     }
-
 
     private List<OrderItem> createOrderItemList(CheckoutRequest checkoutRequest){
 

@@ -7,6 +7,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -38,13 +41,11 @@ public class Account extends BaseModel{
     private Integer age;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL , orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Set<Address> addresses;
+    @OneToMany(cascade = CascadeType.ALL , orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<Address> addresses = new HashSet<>();
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Set<CreditCard> creditCards;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<CreditCard> creditCards = new ArrayList<>();
 
 }

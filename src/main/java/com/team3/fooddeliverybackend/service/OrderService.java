@@ -11,6 +11,6 @@ import java.util.List;
 public interface OrderService extends BaseService<Order> {
 
     List<Order> getOrdersById(Long Id);
-    Order checkout(CheckoutRequest checkoutRequest);
+    Order checkout(CheckoutRequest checkoutRequest, Long addressId);
 
 }

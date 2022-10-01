@@ -25,9 +25,9 @@ public class OrderController extends BaseController<Order> {
 
     @PostMapping("/checkout")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<ApiResponse> checkout(@RequestBody CheckoutRequest checkoutRequest) {
-        final Order checkout = orderService.checkout(checkoutRequest);
-        return ResponseEntity.ok(ApiResponse.builder().build());
+    public ResponseEntity<ApiResponse<Order>> checkout(@RequestBody CheckoutRequest checkoutRequest, @RequestParam Long addressId) {
+        final Order checkout = orderService.checkout(checkoutRequest, addressId);
+        return ResponseEntity.ok(ApiResponse.<Order>builder().data(checkout).build());
     }
 
     @RequestMapping(value = "/orderHistory", method = RequestMethod.GET)
