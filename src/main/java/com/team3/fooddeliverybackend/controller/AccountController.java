@@ -5,15 +5,13 @@ import com.team3.fooddeliverybackend.service.AccountService;
 import com.team3.fooddeliverybackend.service.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.NoSuchElementException;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin
 @RequestMapping("accounts")
 public class AccountController extends BaseController<Account> {
     private final AccountService accountService;
