@@ -41,18 +41,65 @@ public class SampleContentCreator extends BaseComponent implements CommandLineRu
         Store store10 = storeService.create(Store.builder().email("store10@gmail.com").name("Branch").storeCategory(StoreCategory.GROCERY).location("Athens").phoneNumber(1233367891).imgURL("assets/storesImg/branch.png").build());
 
 
-        Product product1 = productService.create(Product.builder().name("Pizza Special").serial("asdasd").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.FOOD).store(store1).build());
-        Product product2 = productService.create(Product.builder().name("Coca Cola").serial("asdasdasd").price(BigDecimal.valueOf(1.50)).productCategory(ProductCategory.DRINK).store(store2).build());
-        Product product3 = productService.create(Product.builder().name("Freddo Espresso").serial("asdasdasdasd").price(BigDecimal.valueOf(2.30)).productCategory(ProductCategory.COFFEE).store(store3).build());
-        Product product4 = productService.create(Product.builder().name("Black Forest").serial("qweqwe").price(BigDecimal.valueOf(14.90)).productCategory(ProductCategory.DESERT).store(store4).build());
-        Product product5 = productService.create(Product.builder().name("Souvlaki").serial("zxczxc").price(BigDecimal.valueOf(3.50)).productCategory(ProductCategory.FOOD).store(store5).build());
-        Product product6 = productService.create(Product.builder().name("Xwriatikh").serial("qweasd").price(BigDecimal.valueOf(5.60)).productCategory(ProductCategory.FOOD).store(store6).build());
-        Product product7 = productService.create(Product.builder().name("Burger").serial("asdfqwer").price(BigDecimal.valueOf(7.90)).productCategory(ProductCategory.FOOD).store(store7).build());
-        Product product8 = productService.create(Product.builder().name("Ice Cream").serial("asdasda95d").price(BigDecimal.valueOf(2.80)).productCategory(ProductCategory.DESERT).store(store8).build());
-        Product product9 = productService.create(Product.builder().name("Margarita").serial("asdasda963d").price(BigDecimal.valueOf(8)).productCategory(ProductCategory.DRINK).store(store9).build());
-        Product product10 = productService.create(Product.builder().name("Spaghetti").serial("asdasda4521sd").price(BigDecimal.valueOf(6.30)).productCategory(ProductCategory.FOOD).store(store10).build());
-        Product product11 = productService.create(Product.builder().name("Pizza Bacon").serial("asdasdfdew3r3").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.FOOD).store(store1).build());
-        Product product12 = productService.create(Product.builder().name("Napoliten Spaghetti").serial("asdasdfdew3r45533").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.FOOD).store(store1).build());
+        productService.create(Product.builder().name("Deluxe Burger").serial("asdasd").price(BigDecimal.valueOf(4.40)).productCategory(ProductCategory.BURGER).imgURL("assets/productsImg/Deluxe3.jpg").store(store1).build());
+        productService.create(Product.builder().name("Crispy McBacon™ McMenu™").serial("asdasdasd").price(BigDecimal.valueOf(7.60)).productCategory(ProductCategory.MENU).imgURL("assets/productsImg/McBacon.jpg").store(store1).build());
+        productService.create(Product.builder().name("Triple Cheeseburger").serial("asdasdasdasd").price(BigDecimal.valueOf(3.50)).productCategory(ProductCategory.BURGER).imgURL("assets/productsImg/Triple-Cheeseburger.jpg").store(store1).build());
+        productService.create(Product.builder().name("Caesar`s ").serial("qweqwe").price(BigDecimal.valueOf(6.4)).productCategory(ProductCategory.SALAD).store(store1).imgURL("assets/productsImg/crispy-chicken-salad.jpg").build());
+        productService.create(Product.builder().name("Μεγάλη Coca - Cola 500ml").serial("zxczxc").price(BigDecimal.valueOf(2.75)).productCategory(ProductCategory.FOOD).imgURL("assets/productsImg/coca-cola-1024x693.jpg").store(store1).build());
+
+        productService.create(Product.builder().name("Hamburger").serial("qwe1asd").price(BigDecimal.valueOf(2.95)).productCategory(ProductCategory.BURGER).imgURL("assets/productsImg/Extreme_Ham.jpg").store(store2).build());
+        productService.create(Product.builder().name("Bao Buns crispy chicken").serial("asdfq23wer").price(BigDecimal.valueOf(5.90)).productCategory(ProductCategory.BAO).imgURL("assets/productsImg/BAO_SITE_CHICKEN_DOUBLE_FINAL.jpg").store(store2).build());
+        productService.create(Product.builder().name("Chicken Wings").serial("asdasd414a95d").price(BigDecimal.valueOf(5.40)).productCategory(ProductCategory.FOOD).store(store2).imgURL("assets/productsImg/2007_Shadow_Chicken_Wings.jpg").build());
+        productService.create(Product.builder().name("Πατάτες Country Style").serial("asda53sda963d").price(BigDecimal.valueOf(3.40)).productCategory(ProductCategory.FOOD).imgURL("assets/productsImg/country_no_shadow.jpg").store(store2).build());
+        productService.create(Product.builder().name("Mama`s").serial("asdasd43a4521sd").price(BigDecimal.valueOf(5.85)).productCategory(ProductCategory.SALAD).store(store2).imgURL("assets/productsImg/43_Shadow_Mamas_Medium.jpg").build());
+
+        productService.create(Product.builder().name("Γύρος χοιρινός σε πίτα παραδοσιακή").serial("asdas55dfdew3r3").price(BigDecimal.valueOf(3.50)).productCategory(ProductCategory.TYLIXTA).imgURL("assets/productsImg/9962afd4d7801adbe96e49a2f2eab69f_L.jpg").store(store3).build());
+        productService.create(Product.builder().name("Καλαμάκι χοιρινό σε πίτα παραδοσιακή").serial("asdasdfdew3r415533").price(BigDecimal.valueOf(3.4)).productCategory(ProductCategory.TYLIXTA).imgURL("assets/productsImg/bbw-souvlakia-19.09.1921622.jpg").store(store3).build());
+        productService.create(Product.builder().name("Club φιλέτο κοτόπουλο").serial("asd0asda4521sd").price(BigDecimal.valueOf(9.50)).productCategory(ProductCategory.FOOD).imgURL("assets/productsImg/club-sandwich-1-1024x683.jpg").store(store3).build());
+        productService.create(Product.builder().name("Χωριάτικη").serial("asdasdfdew3r03").price(BigDecimal.valueOf(6.25)).productCategory(ProductCategory.SALAD).store(store3).imgURL("assets/productsImg/xoriatiki-salata--ep.63---9-5-22---ver.jpg").build());
+        productService.create(Product.builder().name("Μπριζολάκια χοιρινά").serial("asd00asdfdew3r45533").price(BigDecimal.valueOf(12.50)).productCategory(ProductCategory.FOOD).store(store3).imgURL("assets/productsImg/bbw-17.10.1924346_new.jpg").build());
+
+        productService.create(Product.builder().name("Bianca Piccante Πεπερονάτη (Italian Fan)").serial("asdasd00fdew3r3").price(BigDecimal.valueOf(8.20)).productCategory(ProductCategory.PIZZA).imgURL("assets/productsImg/bianca.jpg").store(store4).build());
+        productService.create(Product.builder().name("Πίτσα Crosscut Cheeseburger").serial("asdasdfde00w3r45533").price(BigDecimal.valueOf(10.50)).productCategory(ProductCategory.PIZZA).imgURL("assets/productsImg/crosscut.jpg").store(store4).build());
+        productService.create(Product.builder().name("Μαργαρίτα").serial("asdasd000a4521sd").price(BigDecimal.valueOf(7.40)).productCategory(ProductCategory.PIZZA).store(store4).imgURL("assets/productsImg/margarita.jpg").build());
+        productService.create(Product.builder().name("Pizza Bacon").serial("00asdasdfdew3r3").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.PIZZA).store(store4).imgURL("assets/productsImg/baconpizza.jpg").build());
+        productService.create(Product.builder().name("BBQ Chicken").serial("asdasdfdew003r45533").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.PIZZA).store(store4).imgURL("assets/productsImg/bbqchicken.jpg").build());
+
+        productService.create(Product.builder().name("Μερ. Κεμπάπ").serial("asdasdfdew3r003").price(BigDecimal.valueOf(8.90)).productCategory(ProductCategory.FOOD).imgURL("assets/productsImg/kempam.jpg").store(store5).build());
+        productService.create(Product.builder().name("Tυροπιτάρι με φέτα").serial("asdasdfd00ew3r45533").price(BigDecimal.valueOf(5.80)).productCategory(ProductCategory.FOOD).imgURL("assets/productsImg/tyropitari.jpg").store(store5).build());
+        productService.create(Product.builder().name("Παραδοσιακό Φαλάφελ").serial("as00dasda4521sd").price(BigDecimal.valueOf(5.85)).productCategory(ProductCategory.FOOD).imgURL("assets/productsImg/falafel.jpg").store(store5).build());
+        productService.create(Product.builder().name("Πατάτες τηγανητές").serial("asd000asdfdew3r3").price(BigDecimal.valueOf(3.80)).productCategory(ProductCategory.FOOD).imgURL("assets/productsImg/patates.jpg").store(store5).build());
+        productService.create(Product.builder().name("Αυθεντικό Λαχματζούν").serial("asdasdf00dew3r45533").price(BigDecimal.valueOf(5.90)).productCategory(ProductCategory.FOOD).imgURL("assets/productsImg/laxmatzoun.jpg").store(store5).build());
+
+        productService.create(Product.builder().name("Μπανάνες").serial("asda6s00dfdew3r3").price(BigDecimal.valueOf(2.09)).productCategory(ProductCategory.FRUITS).imgURL("assets/productsImg/banana.jpg").store(store6).build());
+        productService.create(Product.builder().name("Λεμόνια Βιολογικά").serial("asdasdf6dew3r0045533").price(BigDecimal.valueOf(3.58)).productCategory(ProductCategory.FRUITS).store(store6).imgURL("assets/productsImg/lemonia.jpg").build());
+        productService.create(Product.builder().name("Ρόκα Βιολογική").serial("asda67sda4521sd").price(BigDecimal.valueOf(1.89)).productCategory(ProductCategory.VEGETABLES).store(store6).imgURL("assets/productsImg/roka.jpg").build());
+        productService.create(Product.builder().name("Μύρτιλλα").serial("asdasd87fdew3r3").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.FRUITS).store(store6).imgURL("assets/productsImg/murtila.jpg").build());
+        productService.create(Product.builder().name("Φρουτοσαλάτα").serial("asdasdfd97ew3r45533").price(BigDecimal.valueOf(3.48)).productCategory(ProductCategory.FRUITS).imgURL("assets/productsImg/ananas.jpg").store(store6).build());
+
+        productService.create(Product.builder().name("Cheese n` ham").serial("asdasd46fdew3r3").price(BigDecimal.valueOf(4.80)).productCategory(ProductCategory.CREPE).store(store7).imgURL("assets/productsImg/krepaalmiri.jpg").build());
+        productService.create(Product.builder().name("Four cheeses").serial("asdasd689fdew3r45533").price(BigDecimal.valueOf(6.80)).productCategory(ProductCategory.CREPE).imgURL("assets/productsImg/krepaalmiri.jpg").store(store7).build());
+        productService.create(Product.builder().name("Black & white").serial("asdasd075a4521sd").price(BigDecimal.valueOf(5.80)).productCategory(ProductCategory.CREPE).store(store7).imgURL("assets/productsImg/krepaglikia.jpg").build());
+        productService.create(Product.builder().name("White oreo").serial("asdasdfde467w3r3").price(BigDecimal.valueOf(5.30)).productCategory(ProductCategory.CREPE).store(store7).imgURL("assets/productsImg/krepaglikia.jpg").build());
+        productService.create(Product.builder().name("Choco μπανάνα").serial("asdasdf846dew3r45533").price(BigDecimal.valueOf(5.10)).productCategory(ProductCategory.CREPE).imgURL("assets/productsImg/krepaglikia.jpg").store(store7).build());
+
+        productService.create(Product.builder().name("Cappuccino Freddo").serial("4768asdasdfdew3r3").price(BigDecimal.valueOf(2.20)).productCategory(ProductCategory.COFFEE).imgURL("assets/productsImg/freddo.jpg").store(store8).build());
+        productService.create(Product.builder().name("Κουλούρι Θεσσαλονίκης").serial("asdas875dfdew3r45533").price(BigDecimal.valueOf(0.80)).productCategory(ProductCategory.FOOD).imgURL("assets/productsImg/koulouri.jpg").store(store8).build());
+        productService.create(Product.builder().name("Ζαμπονοτυρόπιτα").serial("asdasd858956a4521sd").price(BigDecimal.valueOf(2.30)).productCategory(ProductCategory.SALAD).store(store8).imgURL("assets/productsImg/zampon.jpg").build());
+        productService.create(Product.builder().name("Πίτσα Special").serial("asdasdfd86585ew3r3").price(BigDecimal.valueOf(3.80)).productCategory(ProductCategory.FOOD).store(store8).imgURL("assets/productsImg/pizzaspecial.jpg").build());
+        productService.create(Product.builder().name("Σπανακοτυρόπιτα").serial("asdasdfd5665ew3r45533").price(BigDecimal.valueOf(2.50)).productCategory(ProductCategory.FOOD).imgURL("assets/productsImg/spanakopita.jpg").store(store8).build());
+
+        productService.create(Product.builder().name("WINGS & RINGS").serial("asdasd368fdew3r3").price(BigDecimal.valueOf(7.50)).productCategory(ProductCategory.FOOD).store(store9).imgURL("assets/productsImg/wingring.jpg").build());
+        productService.create(Product.builder().name("The Philly").serial("asdas6368dfdew3r45533").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.BURGER).store(store9).imgURL("assets/productsImg/philly.jpg").build());
+        productService.create(Product.builder().name("The CLassic").serial("asdas63698da4521sd").price(BigDecimal.valueOf(7.70)).productCategory(ProductCategory.BURGER).store(store9).imgURL("assets/productsImg/classic.jpg").build());
+        productService.create(Product.builder().name("Swiss Mushroom").serial("asdasd0789fdew3r3").price(BigDecimal.valueOf(9.20)).productCategory(ProductCategory.BURGER).store(store9).imgURL("assets/productsImg/swiss.jpg").build());
+        productService.create(Product.builder().name("The Beefeater").serial("asd089asdfdew3r45533").price(BigDecimal.valueOf(10.90)).productCategory(ProductCategory.FOOD).store(store9).imgURL("assets/productsImg/beefeater.jpg").build());
+
+        productService.create(Product.builder().name("Espresso").serial("asdasd0898fdew3r3").price(BigDecimal.valueOf(1.50)).productCategory(ProductCategory.COFFEE).store(store10).imgURL("assets/productsImg/Espresso_shot.jpg").build());
+        productService.create(Product.builder().name("Choco Pancakes").serial("asda0875sdfdew3r45533").price(BigDecimal.valueOf(7.60)).productCategory(ProductCategory.FOOD).store(store10).imgURL("assets/productsImg/mqdefault.jpg").build());
+        productService.create(Product.builder().name("English Breakfast").serial("asdasd56790a4521sd").price(BigDecimal.valueOf(10.65)).productCategory(ProductCategory.FOOD).store(store10).imgURL("assets/productsImg/istockphoto-641845826-612x612.jpg").build());
+        productService.create(Product.builder().name("Strawberry Pancakes").serial("asdasdfd08068ew3r3").price(BigDecimal.valueOf(9.90)).productCategory(ProductCategory.FOOD).store(store10).imgURL("assets/productsImg/PXL_20220901_114646765.jpg").build());
+        productService.create(Product.builder().name("Crepe").serial("asdasdfd58890ew3r45533").price(BigDecimal.valueOf(5.50)).productCategory(ProductCategory.FOOD).imgURL("assets/productsImg/download.jpg").store(store10).build());
 
 
         Account account1 = Account.builder().firstname("Spiros").lastname("Christodoulou").age(30).email("s.christodoulou@pmmretail.com").password("8frhev9").build();
