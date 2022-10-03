@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("orders")
+@CrossOrigin
 public class OrderController extends BaseController<Order> {
     private final OrderService orderService;
 
@@ -27,7 +28,7 @@ public class OrderController extends BaseController<Order> {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<ApiResponse> checkout(@RequestBody CheckoutRequest checkoutRequest) {
         final Order checkout = orderService.checkout(checkoutRequest);
-        return ResponseEntity.ok(ApiResponse.builder().build());
+        return ResponseEntity.ok(ApiResponse.builder().data(checkout).build());
     }
 
     @RequestMapping(value = "/orderHistory", method = RequestMethod.GET)
