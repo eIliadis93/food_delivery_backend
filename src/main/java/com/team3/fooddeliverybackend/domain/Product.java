@@ -40,6 +40,5 @@ public class Product extends BaseModel {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @NotNull
-    @JsonIgnore
     private Store store;
 }
